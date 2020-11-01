@@ -1,0 +1,173 @@
+::-webkit-scrollbar {
+    width: 12px;
+    background: #ffffff20;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: #00000030;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    break-after: avoid-page;
+    break-inside: avoid;
+    orphans: 4;
+}
+
+h1 {
+    padding-bottom: .3rem;
+    font-size: 2.25rem !important;
+    font-weight: 900 !important;
+    line-height: 1.2;
+    border-bottom: 1px solid #eee;
+    margin-top: 0 !important;
+}
+
+h2 {
+    padding-bottom: .3rem;
+    font-size: 2rem !important;
+    font-weight: 700 !important;
+    line-height: 1.225;
+}
+
+h3 {
+    font-size: 1.75rem !important;
+    font-weight: 500 !important;
+    line-height: 1.43;
+}
+
+h4 {
+    font-size: 1.5rem !important;
+}
+
+h5 {
+    font-size: 1.25rem !important;
+}
+
+h6 {
+    font-size: 1rem !important;
+    color: #777;
+}
+
+p,
+blockquote,
+ul,
+ol,
+dl,
+table {
+    margin: 0.8rem 0;
+}
+
+p {
+    line-height: 2rem;
+    letter-spacing: 2px;
+    orphans: 4;
+    font-size: 1rem;
+}
+
+p code {
+    letter-spacing: 0px;
+}
+
+pre {
+    background-color: #f9f9f9 !important;
+}
+
+img {
+    max-width: 100%;
+    margin: 0 auto;
+    image-orientation: from-image;
+    display: block;
+}
+
+.mdui-container{
+    background-color: #fff;
+    margin-top: 4rem;
+    padding: 2rem 3rem 5rem 3rem;
+    box-shadow: 0 0 15px 1px #00000070;
+    min-height: calc(100vh - 4rem);
+}
+
+#banner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background-color: rgba(238, 238, 238, 0.5);
+}
+
+.blog-title>a{
+    font-weight: 600;
+    text-decoration: none;
+}
+
+@media (min-width:1680px){
+    body{
+        background-image: url("../img/background.jpg");
+        background-size: cover;
+        background-attachment: fixed;
+    }
+}
+
+@media (min-width:1441px){
+    body{
+        background-color: #eee;
+    }
+    .mdui-container{
+        margin-bottom: 8rem;
+        min-height: calc(100vh - 12rem);
+    }
+}
+
+@media (max-width:1440px){
+    .mdui-container{
+        padding: 2rem 10px 5rem 10px;
+        box-shadow: none;
+    }
+}
+
+
+@media (min-width:1024px){
+    .menu-btn{
+        display: none;
+    }
+
+    .blog-title>a{
+        font-size: 1.75rem;
+    }
+
+    .head-menu>a{
+        font-size: 1.25rem;
+        font-weight: 600;
+        text-decoration: none;
+    }
+
+    .smaller{
+        display: none;
+    }
+}
+
+@media (max-width:1023px){
+    .menu-btn{
+        font-size: 1.25rem;
+        margin-right: 0.25rem;
+    }
+
+    .blog-title>a{
+        font-size: 1.25rem;
+    }
+
+    .head-menu{
+        display: none;
+    }
+
+    .bigger{
+        display: none;
+    }
+}

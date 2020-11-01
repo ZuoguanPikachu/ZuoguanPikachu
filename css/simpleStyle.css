@@ -1,0 +1,121 @@
+::-webkit-scrollbar {
+    width: 12px;
+    background: #ffffff20;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: #00000030;
+}
+
+.mdui-container{
+    background-color: #fff;
+    margin-top: 4rem;
+    padding: 1px 3rem 5rem 3rem;
+    box-shadow: 0 0 15px 1px #00000070;
+    min-height: calc(100vh - 4rem);
+}
+
+#banner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background-color: rgba(238, 238, 238, 0.5);
+}
+
+.blog-title>a{
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.mdui-typo>a{
+    font-size: 1.05rem;
+    margin-left: 2rem;
+    white-space: nowrap;
+}
+
+h3{
+    margin-top: 3rem !important;
+    margin-bottom: 0px !important;
+    font-weight: 900 !important;
+}
+
+h4{
+    margin: 1rem 2rem !important;
+    padding-bottom: 3px;
+    color: #666 !important;
+    font-weight: 700 !important;
+    cursor: pointer !important;
+    border-bottom: #bbb 1px solid;
+}
+
+h4>li{
+    list-style: circle;
+}
+
+@media (min-width:1680px){
+    body{
+        background-image: url("../img/background.jpg");
+        background-size: cover;
+        background-attachment: fixed;
+    }
+}
+
+@media (min-width:1441px){
+    body{
+        background-color: #eee;
+    }
+    .mdui-container{
+        margin-bottom: 8rem;
+        min-height: calc(100vh - 12rem);
+    }
+}
+
+@media (max-width:1440px){
+    .mdui-container{
+        padding: 0px 10px 5rem 10px;
+        box-shadow: none;
+    }
+}
+
+
+@media (min-width:1024px){
+    .menu-btn{
+        display: none;
+    }
+
+    .blog-title>a{
+        font-size: 1.75rem;
+    }
+
+    .head-menu>a{
+        font-size: 1.25rem;
+        font-weight: 600;
+        text-decoration: none;
+    }
+
+    .smaller{
+        display: none;
+    }
+}
+
+@media (max-width:1023px){
+    .menu-btn{
+        font-size: 1.25rem;
+        margin-right: 0.25rem;
+    }
+
+    .blog-title>a{
+        font-size: 1.25rem;
+    }
+
+    .head-menu{
+        display: none;
+    }
+
+    .bigger{
+        display: none;
+    }
+}

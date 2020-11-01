@@ -1,0 +1,128 @@
+::-webkit-scrollbar {
+    width: 12px;
+    background: #ffffff20;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: #00000030;
+}
+
+#banner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background-color: rgba(238, 238, 238, 0.5);
+}
+
+.up-btn{
+    z-index: 90;
+}
+
+.blog-title>a{
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.mdui-container{
+    margin-top: 4rem;
+}
+
+.mdui-card{
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+
+.mdui-card-media{
+    width: 100%;
+    height: 100%;
+}
+
+.mdui-card-media>img{
+    width: 100%;
+    height: 100%;
+}
+
+.shadow{
+    box-shadow: 2px 3px 10px 2px #00000050;
+}
+
+@media (min-width:1680px){
+    body{
+        background-image: url("../img/background.jpg");
+        background-size: cover;
+        background-attachment: fixed;
+    }
+}
+
+@media (min-width:1024px){
+    body{
+        background-color: #eee;
+    }
+
+    .menu-btn{
+        display: none;
+    }
+
+    .blog-title>a{
+        font-size: 1.75rem;
+    }
+
+    .head-menu>a{
+        font-size: 1.25rem;
+        font-weight: 600;
+        text-decoration: none;
+    }
+
+    .smaller{
+        display: none;
+    }
+
+    .mdui-container{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 2.5rem 4.5rem;
+    }
+
+    .mdui-card:hover{
+        box-shadow: 2px 3px 12px 2px #00000075;
+    }
+
+    .mdui-card-primary-title{
+        font-size: 2rem;
+        font-weight: 600;
+    }
+}
+
+@media (max-width:1023px){
+    body{
+        background-color: #eee;
+    }
+
+    .menu-btn{
+        font-size: 1.25rem;
+        margin-right: 0.25rem;
+    }
+
+    .blog-title>a{
+        font-size: 1.25rem;
+    }
+
+    .head-menu{
+        display: none;
+    }
+
+    .bigger{
+        display: none;
+    }
+
+    .mdui-card{
+        margin: 2rem auto;
+    }
+
+    .mdui-card-primary-title{
+        font-weight: 600;
+    }
+}
