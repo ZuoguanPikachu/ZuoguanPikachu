@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="../../css/prism.css">
+<link rel="stylesheet" href="../../css/mdui.min.css">
+<link rel="stylesheet" href="../../css/articleStyle.css">
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/mdui.min.js"></script>
+<title>Flutter打包apk</title>
+</head>
+<body class="mdui-theme-primary-pink mdui-theme-accent-red">
+<div id="banner" mdui-headroom>
+<div class="mdui-toolbar mdui-valign">
+<button class="mdui-btn mdui-btn-icon mdui-ripple menu-btn"><i class="mdui-icon material-icons">dehaze</i></button>
+<div class="blog-title">
+<a href="/" class="mdui-typo-title mdui-text-color-theme">坐观是只皮卡丘</a>
+</div>
+<div class="mdui-toolbar-spacer"></div>
+<div class="mdui-text-color-theme head-menu">
+<a href="/" class="mdui-btn mdui-ripple">HOME</a>
+<a href="/pages/category.html" class="mdui-btn mdui-ripple">CATEGORY</a>
+<a href="/pages/archive.html" class="mdui-btn mdui-ripple">ARCHIVE</a>
+<a href="https://github.com/ZuoguanPikachu" class="mdui-btn mdui-ripple">GITHUB</a>
+<a href="/pages/about.html" class="mdui-btn mdui-ripple">ABOUT</a>
+</div>
+</div>
+</div>
+<div class="mdui-container">
+<div class="mdui-drawer mdui-drawer-close" id="drawer">
+<ul class="mdui-list">
+<a href="/" class="mdui-list-item mdui-ripple">
+<i class="mdui-list-item-icon mdui-icon material-icons">home</i>
+<div class="mdui-list-item-content">HOME</div>
+</a>
+<a href="/pages/category.html" class="mdui-list-item mdui-ripple">
+<i class="mdui-list-item-icon mdui-icon material-icons">label_outline</i>
+<div class="mdui-list-item-content">CATEGORY</div>
+</a>
+<a href="/pages/archive.html" class="mdui-list-item mdui-ripple">
+<i class="mdui-list-item-icon mdui-icon material-icons">assignment</i>
+<div class="mdui-list-item-content">ARCHIVE</div>
+</a>
+<a href="https://github.com/ZuoguanPikachu" class="mdui-list-item mdui-ripple">
+<i class="mdui-list-item-icon mdui-icon material-icons">code</i>
+<div class="mdui-list-item-content">GITHUB</div>
+</a>
+<a href="/pages/about.html" class="mdui-list-item mdui-ripple">
+<i class="mdui-list-item-icon mdui-icon material-icons">person</i>
+<div class="mdui-list-item-content">ABOUT</div>
+</a>
+</ul>
+</div>
+<button class="mdui-fab mdui-fab-fixed mdui-ripple mdui-color-theme-accent up-btn bigger"><i class="mdui-icon material-icons">keyboard_arrow_up</i></button>
+<button class="mdui-fab  mdui-fab-mini mdui-fab-fixed mdui-ripple mdui-color-theme-accent up-btn smaller"><i class="mdui-icon material-icons">keyboard_arrow_up</i></button>
+<div class="mdui-typo">
+<h1>Flutter打包apk</h1>
+<p>参考了<a href="https://flutterchina.club/">Flutter中文网</a>的这篇文档<a href="https://flutterchina.club/android-release/">发布Android版APP</a>，对其中一些错误做了修正。（我的方法只是经我实践得出的可行解，而非标准解）</p>
+<hr>
+<h2>检查App Manifest</h2>
+<p>查看默认<a href="http://developer.android.com/guide/topics/manifest/manifest-intro.html">应用程序清单</a>文件(位于<code>&lt;app dir&gt;/android/app/src/main/</code>中的<code>AndroidManifest.xml</code>文件)，并验证这些值是否正确，特别是：</p>
+<ul>
+<li><code>application</code>: 编辑 <a href="https://developer.android.com/guide/topics/manifest/application-element.html"><code>application</code></a> 标签， 这是应用的名称。</li>
+<li><code>uses-permission</code>: 如果您的应用程序代码不需要Internet访问，请删除<code>android.permission.INTERNET</code>权限。标准模板包含此标记是为了启用Flutter工具和正在运行的应用程序之间的通信。</li>
+</ul>
+<h2>查看构建配置</h2>
+<p>查看默认[Gradle 构建文件][gradlebuild]”build.gradle”，它位于<code>&lt;app dir&gt;/android/app/</code>，验证这些值是否正确，尤其是：</p>
+<ul>
+<li><p><code>defaultConfig</code>:</p>
+<ul>
+<li><code>applicationId</code>: 指定始终唯一的 (Application Id)<a href="https://developer.android.com/studio/build/application-id.html">appid</a></li>
+<li><code>versionCode</code> &amp; <code>versionName</code>: 指定应用程序版本号和版本号字符串。有关详细信息，请参考<a href="https://developer.android.com/studio/publish/versioning.html">版本文档</a></li>
+<li><code>minSdkVersion</code> &amp; <code>targetSdkVersion</code>: 指定最低的API级别以及应用程序设计运行的API级别。有关详细信息，请参阅<a href="https://developer.android.com/studio/publish/versioning.html">版本文档</a>中的API级别部分</li>
+</ul>
+</li>
+</ul>
+<h2>添加启动图标</h2>
+<p>当一个新的Flutter应用程序被创建时，它有一个默认的启动器图标。要自定义此图标：</p>
+<ol>
+<li>查看<a href="https://developer.android.com/guide/practices/ui_guidelines/icon_design_launcher.html">Android启动图标</a> 设计指南，然后创建图标。</li>
+<li>在<code>&lt;app dir&gt;/android/app/src/main/res/</code>目录中，将图标文件放入使用<a href="https://developer.android.com/guide/practices/screens_support.html#qualifiers">配置限定符</a>命名的文件夹中。默认<code>mipmap-</code>文件夹演示正确的命名约定。</li>
+<li>在<code>AndroidManifest.xml</code>中，将<a href="https://developer.android.com/guide/topics/manifest/application-element.html"><code>application</code></a>标记的<code>android:icon</code>属性更新为引用上一步中的图标（例如 <code>&lt;application android:icon="@mipmap/ic_launcher" ...</code>）。</li>
+<li>要验证图标是否已被替换，请运行您的应用程序并检查应用图标。</li>
+</ol>
+<h2>app签名</h2>
+<h3>创建 keystore</h3>
+<p>如果您有现有keystore，请跳至下一步。如果没有，请在<code>&lt;app dir&gt;/android/app</code>目录下，通过在运行以下命令来创建一个：<code>keytool -genkey -v -keystore key.jks -keyalg RSA -keysize 2048 -validity 10000 -alias key</code></p>
+<p><strong>注意</strong>: <code>keytool</code>可能不在系统路径中。它是Java JDK的一部分，它是作为Android Studio的一部分安装的。有关具体路径，可参照如下方法：</p>
+<ol>
+<li><p>打开Android studio</p>
+</li>
+<li><p><img src="00.png" alt="00"></p>
+</li>
+<li><p>红框中的就是JDK所在的目录</p>
+<p><img src="01.png" alt="01"></p>
+</li>
+<li><p>我们所需要的<code>keytool</code>在JDK目录下的<code>bin</code>文件夹中。为了便于日后的使用，可将<code>&lt;jdk dir&gt;/bin</code>添加到环境变量</p>
+</li>
+</ol>
+<h3>引用应用程序中的keystore</h3>
+<p>创建一个名为<code>&lt;app dir&gt;/android/key.properties</code>的文件，其中包含对密钥库的引用：</p>
+<pre><code class="lang-groovy">storePassword=&lt;password from previous step&gt;
+keyPassword=&lt;password from previous step&gt;
+keyAlias=key
+storeFile=key.jks
+</code></pre>
+<p><strong>注意</strong>: 保持文件私密; 不要将它加入公共源代码控制中。</p>
+<h3>在gradle中配置签名</h3>
+<p>通过编辑<code>&lt;app dir&gt;/android/app/build.gradle</code>文件为您的应用配置签名</p>
+<ol>
+<li><p>替换:</p>
+<pre><code class="lang-groovy"> android {
+</code></pre>
+<p>为：</p>
+<pre><code class="lang-groovy"> def keystorePropertiesFile = rootProject.file(&quot;key.properties&quot;)
+ def keystoreProperties = new Properties()
+ keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
+ android {
+</code></pre>
+</li>
+<li><p>替换:</p>
+<pre><code class="lang-groovy"> buildTypes {
+     release {
+         // TODO: Add your own signing config for the release build.
+         // Signing with the debug keys for now, so `flutter run --release` works.
+         signingConfig signingConfigs.debug
+     }
+ }
+</code></pre>
+<p>为:</p>
+<pre><code class="lang-groovy"> signingConfigs {
+     release {
+         keyAlias keystoreProperties[&#39;keyAlias&#39;]
+         keyPassword keystoreProperties[&#39;keyPassword&#39;]
+         storeFile file(keystoreProperties[&#39;storeFile&#39;])
+         storePassword keystoreProperties[&#39;storePassword&#39;]
+     }
+ }
+ buildTypes {
+     release {
+         signingConfig signingConfigs.release
+     }
+ }
+</code></pre>
+<p>现在，您的应用的release版本将自动进行签名。</p>
+</li>
+</ol>
+<h2>开启混淆</h2>
+<p>默认情况下flutter不会开启Android的混淆。</p>
+<p>如果使用了第三方Java或Android库，也许你想减小apk文件的大小或者防止代码被逆向破解。</p>
+<h3>配置混淆</h3>
+<p>创建 <code>&lt;app dir&gt;/android/app/proguard-rules.pro</code> 文件，并添加以下规则：</p>
+<pre><code>#Flutter Wrapper
+-keep class io.flutter.app.** { *; }
+-keep class io.flutter.plugin.**  { *; }
+-keep class io.flutter.util.**  { *; }
+-keep class io.flutter.view.**  { *; }
+-keep class io.flutter.**  { *; }
+-keep class io.flutter.plugins.**  { *; }
+</code></pre>
+<p>上述配置只混淆了Flutter引擎库，任何其他库（比如 Firebase）需要添加与之对应的规则。</p>
+<h3>开启混淆/压缩</h3>
+<p>打开 <code>&lt;app dir&gt;/android/app/build.gradle</code> 文件，定位到 <code>buildTypes</code> 块。</p>
+<p>在 <code>release</code> 配置中将 <code>minifyEnabled</code> 和 <code>useProguard</code> 设为 <code>true</code>，再将混淆文件指向上一步创建的文件。</p>
+<pre><code>android {
+
+    ...
+
+    buildTypes {
+
+        release {
+
+            signingConfig signingConfigs.release
+
+            minifyEnabled true
+            useProguard true
+
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+        }
+    }
+}
+</code></pre>
+<h2>构建一个发布版（release）APK</h2>
+<p>使用命令行:</p>
+<ol>
+<li><code>cd &lt;app dir&gt;</code> (<code>&lt;app dir&gt;</code> 为您的工程目录)。</li>
+<li>运行<code>flutter build apk</code> (<code>flutter build</code> 默认会包含 <code>--release</code>选项)。</li>
+</ol>
+<p>打包好的发布APK位于<code>&lt;app dir&gt;/build/app/outputs/apk/app-release.apk</code>。</p>
+<p>如果提示<code>Error: Unable to find git in your PATH</code>，则将<code>&lt;git dir&gt;/mingw64/libexec/git-core</code>和<code>&lt;git dir&gt;/bin</code>添加到系统环境变量的path中，然后<strong>重启电脑</strong>。</p>
+
+</div>
+</div>
+<script src="../../js/prism.js"></script>
+<script src="../../js/scripts.js"></script>
+</body>
+</html>
