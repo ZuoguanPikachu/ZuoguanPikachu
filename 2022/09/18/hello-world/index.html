@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
-        <title>Hello World | 坐观是只皮卡丘</title>
+        <title>Hello World | 坐观の小站</title>
         <meta name="author" content="坐观是只皮卡丘">
         <meta name="description" content="">
         <meta name="keywords" content="">
@@ -16,7 +16,119 @@
         <link rel="stylesheet" href="/css/particlex.css">
         
         <script src="https://cdn.staticfile.org/vue/3.2.33/vue.global.prod.min.js"></script>
-    <meta name="generator" content="Hexo 6.3.0"></head>
+    <meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
     <body>
         <div id="loading" style="height:100vh;width:100vw;position:fixed;display:flex;z-index:200;justify-content:space-between;background:#fff;transition:opacity 0.3s ease-out"><div style="position:fixed;height:100vh;width:100vw;display:flex;justify-content:center;align-items:center"><div id="loadcontent" style="width:50vmin;height:50vmin;padding:50px;border-radius:50%;display:flex;justify-content:center;align-items:center;border:solid 10px #a3ddfb;text-align:center"><div><h2>LOADING...</h2><p style="word-break:keep-all">加载过慢请开启缓存(浏览器默认开启)</p><div><img alt="loading" src="/loading.gif"></div></div></div></div></div>
         <div id="layout">
@@ -30,32 +142,32 @@
 <nav id="menu">
     <div class="desktop-menu">
         <a href="/">
-            <span class="title">坐观是只皮卡丘</span>
+            <span class="title">坐观の小站</span>
         </a>
         
         <a href="/">
             <i class="fa-solid fa-house fa-fw"></i>
-            <span>&ensp;home</span>
-        </a>
-        
-        <a href="/about">
-            <i class="fa-solid fa-id-card fa-fw"></i>
-            <span>&ensp;about</span>
+            <span>&ensp;Home</span>
         </a>
         
         <a href="/archives">
             <i class="fa-solid fa-box-archive fa-fw"></i>
-            <span>&ensp;archives</span>
+            <span>&ensp;Archives</span>
         </a>
         
         <a href="/categories">
             <i class="fa-solid fa-bookmark fa-fw"></i>
-            <span>&ensp;categories</span>
+            <span>&ensp;Categories</span>
         </a>
         
         <a href="/tags">
             <i class="fa-solid fa-tags fa-fw"></i>
-            <span>&ensp;tags</span>
+            <span>&ensp;Tags</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
         </a>
         
     </div>
@@ -63,7 +175,7 @@
         <div class="curtain" @click="menu_show = !menu_show" v-show="menu_show"></div>
         <div :class="'title'" @click="menu_show = !menu_show">
             <i class="fa-solid fa-bars fa-fw"></i>
-            <span>&emsp;坐观是只皮卡丘</span>
+            <span>&emsp;坐观の小站</span>
         </div>
         <transition name="slide">
         <div class="items" v-show="menu_show">
@@ -73,16 +185,7 @@
                     <div style="min-width: 20px; max-width: 50px; width: 10%">
                         <i class="fa-solid fa-house fa-fw"></i>
                     </div>
-                    <div style="min-width: 100px; max-width: 150%; width: 20%">home</div>
-                </div>
-            </a>
-            
-            <a href="/about">
-                <div class="item">
-                    <div style="min-width: 20px; max-width: 50px; width: 10%">
-                        <i class="fa-solid fa-id-card fa-fw"></i>
-                    </div>
-                    <div style="min-width: 100px; max-width: 150%; width: 20%">about</div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
                 </div>
             </a>
             
@@ -91,7 +194,7 @@
                     <div style="min-width: 20px; max-width: 50px; width: 10%">
                         <i class="fa-solid fa-box-archive fa-fw"></i>
                     </div>
-                    <div style="min-width: 100px; max-width: 150%; width: 20%">archives</div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
                 </div>
             </a>
             
@@ -100,7 +203,7 @@
                     <div style="min-width: 20px; max-width: 50px; width: 10%">
                         <i class="fa-solid fa-bookmark fa-fw"></i>
                     </div>
-                    <div style="min-width: 100px; max-width: 150%; width: 20%">categories</div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
                 </div>
             </a>
             
@@ -109,7 +212,16 @@
                     <div style="min-width: 20px; max-width: 50px; width: 10%">
                         <i class="fa-solid fa-tags fa-fw"></i>
                     </div>
-                    <div style="min-width: 100px; max-width: 150%; width: 20%">tags</div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                </div>
+            </a>
+            
+            <a href="/about">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-id-card fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
                 </div>
             </a>
             
@@ -149,14 +261,14 @@
             
             <span class="tag">
                 
-                <a href="/tags/hello-world/" style="color: #00bcd4">
+                <a href="/tags/hello-world/" style="color: #ffa2c4">
                     hello world
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/杂/" style="color: #00bcd4">
+                <a href="/tags/杂/" style="color: #00a596">
                     杂
                 </a>
             </span>
@@ -165,7 +277,16 @@
         
     </div>
     <div class="content" v-pre>
-        <p>兜兜转转，又回到了这？<br>在许久以前，我就想搭建一个自己的网站，当时是觉得这样很酷，可是的我是个编程菜鸟，甚至连服务器是什么都不知道。<br>在后来的编程学习中，我了解到可以通过github部署静态网页，还了解到hexo、hugo等博客框架。让我萌生要去搭建自己的博客的想法，是因为在编程学习过程中，发现那些个人博客的文章时常能帮我解决一些冷门的问题，我也希望能够通过自己的踩坑经历，帮助到一些人。<br>当时我确实成功部署了我的博客。但因为当时还是一个高三学生，基本没有时间管理博客，而且访问速度感人，遂放弃了。<br>高考结束后，了解到了vercel，这解决了访问速度的问题。于是，我用python编写了一个简陋的博客框架，再一次部署了我的博客。<br>但是因为高考失利，并没有选择计算机相关的专业，而是选择了医学检验技术，学业比较繁忙，没有时间去写博客，也没有时间优化我的博客框架，又一次放弃了。<br>后来学会了租VPS、购买域名、反向代理等，还了解到了typecho这一动态博客框架，再一次搭建了博客。<br>运营了半年左右，突然不想继续租VPS了，但是又想保留着我的博客。思考了很多方法，也有去寻找方法，最后是用github + vercel + hexo，迁移了我的博客。所以兜兜转转，又回到了hexo与vercel？</p>
+        <p>兜兜转转，又回到了这？<br>
+在许久以前，我就想搭建一个自己的网站，当时是觉得这样很酷，可是的我是个编程菜鸟，甚至连服务器是什么都不知道。<br>
+在后来的编程学习中，我了解到可以通过github部署静态网页，还了解到hexo、hugo等博客框架。让我萌生要去搭建自己的博客的想法，是因为在编程学习过程中，发现那些个人博客的文章时常能帮我解决一些冷门的问题，我也希望能够通过自己的踩坑经历，帮助到一些人。<br>
+当时我确实成功部署了我的博客。但因为当时还是一个高三学生，基本没有时间管理博客，而且访问速度感人，遂放弃了。<br>
+高考结束后，了解到了vercel，这解决了访问速度的问题。于是，我用python编写了一个简陋的博客框架，再一次部署了我的博客。<br>
+但是因为高考失利，并没有选择计算机相关的专业，而是选择了医学检验技术，学业比较繁忙，没有时间去写博客，也没有时间优化我的博客框架，又一次放弃了。<br>
+后来学会了租VPS、购买域名、反向代理等，还了解到了typecho这一动态博客框架，再一次搭建了博客。<br>
+运营了半年左右，突然不想继续租VPS了，但是又想保留着我的博客。思考了很多方法，也有去寻找方法，最后是用github
++ vercel +
+hexo，迁移了我的博客。所以兜兜转转，又回到了hexo与vercel？</p>
 
     </div>
     
@@ -173,9 +294,9 @@
 </div>
                          
 <footer id="footer">
-    <div class="footer-wrap">
+    <!-- <div class="footer-wrap">
         <div>
-            © 2022 - 2022 坐观是只皮卡丘
+            © 2022 - 2022 坐观の小站
             <span class="footer-icon">
                 <i class="fa-solid fa-font-awesome fa-fw"></i>
             </span>
@@ -185,7 +306,7 @@
         <div>Based on the <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo Engine</a> & <a
                 target="_blank" rel="noopener" href="https://github.com/argvchs/hexo-theme-particlex">ParticleX Theme</a></div>
         
-    </div>
+    </div> -->
 </footer>
                     </div>
                 </div>
