@@ -1204,6 +1204,10 @@ i.iconfont {
   .index-info {
     padding-top: 1.25rem;
   }
+  .index-card {
+    border-bottom: 1px dashed #c4c6c9;
+    padding-bottom: 0.5rem;
+  }
   .index-header {
     font-size: 1.25rem;
     white-space: normal;
