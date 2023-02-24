@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>使用 Python + Clash，爬取外网数据</title>
+    <link href="/2023/02/24/%E4%BD%BF%E7%94%A8-Python-Clash%EF%BC%8C%E7%88%AC%E5%8F%96%E5%A4%96%E7%BD%91%E6%95%B0%E6%8D%AE/"/>
+    <url>/2023/02/24/%E4%BD%BF%E7%94%A8-Python-Clash%EF%BC%8C%E7%88%AC%E5%8F%96%E5%A4%96%E7%BD%91%E6%95%B0%E6%8D%AE/</url>
+    
+    <content type="html"><![CDATA[<p>有的时候，希望能够爬取一些外网的数据，但是开启<code>Clash</code>之类的软件后，发现会直接报<code>requests.exceptions.ProxyError</code>的错误。最近学会了该如何操作，其实很简单，代码如下：</p><span id="more"></span><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> requests<br><span class="hljs-keyword">import</span> urllib3<br><br><br><span class="hljs-comment"># 设置了verify=False后(在后面)会有警告，关闭警告</span><br>urllib3.disable_warnings()<br><br>url = <span class="hljs-string">"https://www.google.com"</span><br><br><span class="hljs-comment"># Clash默认的代理端口为7890</span><br>proxies = {<br>    <span class="hljs-string">'http'</span>: <span class="hljs-string">'http://127.0.0.1:7890/'</span>,<br>    <span class="hljs-string">'https'</span>: <span class="hljs-string">'http://127.0.0.1:7890/'</span><br>}<br><br>response = requests.get(url=url, verify=<span class="hljs-literal">False</span>, proxies=proxies)<br></code></pre></td></tr></table></figure><p>结果如下，可见请求已经成功</p><p><img src="https://zuoguan-piclib-1257172707.cos.ap-guangzhou.myqcloud.com/%E4%BD%BF%E7%94%A8Python%E5%92%8CClash%E7%88%AC%E5%8F%96%E5%A4%96%E7%BD%91%E6%95%B0%E6%8D%AE/image-20230224190454948.png"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>编程</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>爬虫</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>高中生也能学会的插值算法</title>
     <link href="/2023/02/06/%E9%AB%98%E4%B8%AD%E7%94%9F%E4%B9%9F%E8%83%BD%E5%AD%A6%E4%BC%9A%E7%9A%84%E6%8F%92%E5%80%BC%E7%AE%97%E6%B3%95/"/>
     <url>/2023/02/06/%E9%AB%98%E4%B8%AD%E7%94%9F%E4%B9%9F%E8%83%BD%E5%AD%A6%E4%BC%9A%E7%9A%84%E6%8F%92%E5%80%BC%E7%AE%97%E6%B3%95/</url>
