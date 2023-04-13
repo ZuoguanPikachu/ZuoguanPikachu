@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>机器学习中数据的简单处理</title>
+    <link href="/2023/04/13/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%AD%E6%95%B0%E6%8D%AE%E7%9A%84%E7%AE%80%E5%8D%95%E5%A4%84%E7%90%86/"/>
+    <url>/2023/04/13/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%AD%E6%95%B0%E6%8D%AE%E7%9A%84%E7%AE%80%E5%8D%95%E5%A4%84%E7%90%86/</url>
+    
+    <content type="html"><![CDATA[<p><code>Kaggle</code>入门的机器学习比赛，如<code>House Prices - Advanced Regression Techniques</code>、<code>Titanic - Machine Learning from Disaster</code>的数据集中会有一些缺失值和一些离散值，分享一下使用<code>pandas</code>快速处理的方法。</p><p>首先将训练集和测试集合并（在后续步骤中训练集与测试集一起算均值、方差，属于比赛中的小技巧）</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">train = pandas.read_csv(<span class="hljs-string">"train.csv"</span>)<br>test = pandas.read_csv(<span class="hljs-string">"test.csv"</span>)<br>all_features = pandas.concat((train.iloc[:, <span class="hljs-number">1</span>:-<span class="hljs-number">1</span>], test.iloc[:, <span class="hljs-number">1</span>:]))<br></code></pre></td></tr></table></figure><p>将数值型特征重新缩放到零均值和单位方差来标准化数据，缺失值替换为0，即均值</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">numeric_features = all_features.dtypes[all_features.dtypes != <span class="hljs-string">"object"</span>].index<br>all_features[numeric_features] = all_features[numeric_features].apply(<br>    <span class="hljs-keyword">lambda</span> x: (x - x.mean()) / x.std()<br>)<br>all_features[numeric_features] = all_features[numeric_features].fillna(<span class="hljs-number">0</span>)<br></code></pre></td></tr></table></figure><p>对离散数值采用one-hot编码处理</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">all_features = pandas.get_dummies(all_features, dummy_na=<span class="hljs-literal">True</span>)<br></code></pre></td></tr></table></figure><p>处理完后，再重新分为训练集和测试集</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">n_train = train.shape[<span class="hljs-number">0</span>]<br>train_features = torch.tensor(all_features[:n_train].values.astype(numpy.float32), dtype=torch.float32)<br>test_features = torch.tensor(all_features[n_train:].values.astype(numpy.float32), dtype=torch.float32)<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>编程</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>数据</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>使用 Python + Clash，爬取外网数据</title>
     <link href="/2023/02/24/%E4%BD%BF%E7%94%A8-Python-Clash%EF%BC%8C%E7%88%AC%E5%8F%96%E5%A4%96%E7%BD%91%E6%95%B0%E6%8D%AE/"/>
     <url>/2023/02/24/%E4%BD%BF%E7%94%A8-Python-Clash%EF%BC%8C%E7%88%AC%E5%8F%96%E5%A4%96%E7%BD%91%E6%95%B0%E6%8D%AE/</url>

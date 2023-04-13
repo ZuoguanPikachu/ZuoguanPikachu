@@ -16,24 +16,24 @@
   <meta name="author" content="坐观是只皮卡丘">
   <meta name="keywords" content="">
   
-    <meta name="description" content="有的时候，希望能够爬取一些外网的数据，但是开启Clash之类的软件后，发现会直接报requests.exceptions.ProxyError的错误。最近学会了该如何操作，其实很简单，代码如下：">
+    <meta name="description" content="Kaggle入门的机器学习比赛，如House Prices - Advanced Regression Techniques、Titanic - Machine Learning from Disaster的数据集中会有一些缺失值和一些离散值，分享一下使用pandas快速处理的方法。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用 Python + Clash，爬取外网数据">
-<meta property="og:url" content="https://zuoguan.netlify.app/2023/02/24/%E4%BD%BF%E7%94%A8-Python-Clash%EF%BC%8C%E7%88%AC%E5%8F%96%E5%A4%96%E7%BD%91%E6%95%B0%E6%8D%AE/index.html">
+<meta property="og:title" content="机器学习中数据的简单处理">
+<meta property="og:url" content="https://zuoguan.netlify.app/2023/04/13/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%AD%E6%95%B0%E6%8D%AE%E7%9A%84%E7%AE%80%E5%8D%95%E5%A4%84%E7%90%86/index.html">
 <meta property="og:site_name" content="坐观の小站">
-<meta property="og:description" content="有的时候，希望能够爬取一些外网的数据，但是开启Clash之类的软件后，发现会直接报requests.exceptions.ProxyError的错误。最近学会了该如何操作，其实很简单，代码如下：">
+<meta property="og:description" content="Kaggle入门的机器学习比赛，如House Prices - Advanced Regression Techniques、Titanic - Machine Learning from Disaster的数据集中会有一些缺失值和一些离散值，分享一下使用pandas快速处理的方法。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://zuoguan-piclib-1257172707.cos.ap-guangzhou.myqcloud.com/assets/5.jpg">
-<meta property="article:published_time" content="2023-02-24T10:38:48.000Z">
-<meta property="article:modified_time" content="2023-02-24T11:09:32.340Z">
+<meta property="article:published_time" content="2023-04-13T15:15:06.000Z">
+<meta property="article:modified_time" content="2023-04-13T15:43:35.141Z">
 <meta property="article:author" content="坐观是只皮卡丘">
-<meta property="article:tag" content="爬虫">
+<meta property="article:tag" content="数据">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://zuoguan-piclib-1257172707.cos.ap-guangzhou.myqcloud.com/assets/5.jpg">
   
   
   
-  <title>使用 Python + Clash，爬取外网数据 - 坐观の小站</title>
+  <title>机器学习中数据的简单处理 - 坐观の小站</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -311,7 +311,7 @@ mjx-container[display="true"] + br {
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="使用 Python + Clash，爬取外网数据"></span>
+            <span id="subtitle" data-typed-text="机器学习中数据的简单处理"></span>
           
         </div>
 
@@ -322,8 +322,8 @@ mjx-container[display="true"] + br {
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-02-24 18:38" pubdate>
-          2023年2月24日 晚上
+        <time datetime="2023-04-13 23:15" pubdate>
+          2023年4月13日 晚上
         </time>
       </span>
     
@@ -334,7 +334,7 @@ mjx-container[display="true"] + br {
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          396 字
+          912 字
         
       </span>
     
@@ -345,7 +345,7 @@ mjx-container[display="true"] + br {
         
         
         
-          4 分钟
+          8 分钟
         
       </span>
     
@@ -383,16 +383,20 @@ mjx-container[display="true"] + br {
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">使用 Python + Clash，爬取外网数据</h1>
+            <h1 style="display: none">机器学习中数据的简单处理</h1>
             
             
               <div class="markdown-body">
                 
-                <p>有的时候，希望能够爬取一些外网的数据，但是开启<code>Clash</code>之类的软件后，发现会直接报<code>requests.exceptions.ProxyError</code>的错误。最近学会了该如何操作，其实很简单，代码如下：</p>
-<span id="more"></span>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> requests<br><span class="hljs-keyword">import</span> urllib3<br><br><br><span class="hljs-comment"># 设置了verify=False后(在后面)会有警告，关闭警告</span><br>urllib3.disable_warnings()<br><br>url = <span class="hljs-string">"https://www.google.com"</span><br><br><span class="hljs-comment"># Clash默认的代理端口为7890</span><br>proxies = {<br>    <span class="hljs-string">'http'</span>: <span class="hljs-string">'http://127.0.0.1:7890/'</span>,<br>    <span class="hljs-string">'https'</span>: <span class="hljs-string">'http://127.0.0.1:7890/'</span><br>}<br><br>response = requests.get(url=url, verify=<span class="hljs-literal">False</span>, proxies=proxies)<br></code></pre></td></tr></table></figure>
-<p>结果如下，可见请求已经成功</p>
-<p><img src="https://zuoguan-piclib-1257172707.cos.ap-guangzhou.myqcloud.com/%E4%BD%BF%E7%94%A8Python%E5%92%8CClash%E7%88%AC%E5%8F%96%E5%A4%96%E7%BD%91%E6%95%B0%E6%8D%AE/image-20230224190454948.png" srcset="/img/loading.gif" lazyload></p>
+                <p><code>Kaggle</code>入门的机器学习比赛，如<code>House Prices - Advanced Regression Techniques</code>、<code>Titanic - Machine Learning from Disaster</code>的数据集中会有一些缺失值和一些离散值，分享一下使用<code>pandas</code>快速处理的方法。</p>
+<p>首先将训练集和测试集合并（在后续步骤中训练集与测试集一起算均值、方差，属于比赛中的小技巧）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">train = pandas.read_csv(<span class="hljs-string">"train.csv"</span>)<br>test = pandas.read_csv(<span class="hljs-string">"test.csv"</span>)<br>all_features = pandas.concat((train.iloc[:, <span class="hljs-number">1</span>:-<span class="hljs-number">1</span>], test.iloc[:, <span class="hljs-number">1</span>:]))<br></code></pre></td></tr></table></figure>
+<p>将数值型特征重新缩放到零均值和单位方差来标准化数据，缺失值替换为0，即均值</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">numeric_features = all_features.dtypes[all_features.dtypes != <span class="hljs-string">"object"</span>].index<br>all_features[numeric_features] = all_features[numeric_features].apply(<br>    <span class="hljs-keyword">lambda</span> x: (x - x.mean()) / x.std()<br>)<br>all_features[numeric_features] = all_features[numeric_features].fillna(<span class="hljs-number">0</span>)<br></code></pre></td></tr></table></figure>
+<p>对离散数值采用one-hot编码处理</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">all_features = pandas.get_dummies(all_features, dummy_na=<span class="hljs-literal">True</span>)<br></code></pre></td></tr></table></figure>
+<p>处理完后，再重新分为训练集和测试集</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">n_train = train.shape[<span class="hljs-number">0</span>]<br>train_features = torch.tensor(all_features[:n_train].values.astype(numpy.float32), dtype=torch.float32)<br>test_features = torch.tensor(all_features[n_train:].values.astype(numpy.float32), dtype=torch.float32)<br></code></pre></td></tr></table></figure>
 
                 
               </div>
@@ -426,7 +430,7 @@ mjx-container[display="true"] + br {
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E7%88%AC%E8%99%AB/">#爬虫</a>
+        <a href="/tags/%E6%95%B0%E6%8D%AE/">#数据</a>
       
     </div>
   
@@ -438,8 +442,8 @@ mjx-container[display="true"] + br {
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>使用 Python + Clash，爬取外网数据</div>
-      <div>https://zuoguan.netlify.app/2023/02/24/使用-Python-Clash，爬取外网数据/</div>
+      <div>机器学习中数据的简单处理</div>
+      <div>https://zuoguan.netlify.app/2023/04/13/机器学习中数据的简单处理/</div>
     </div>
     <div class="license-meta">
       
@@ -451,7 +455,7 @@ mjx-container[display="true"] + br {
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年2月24日</div>
+          <div>2023年4月13日</div>
         </div>
       
       
@@ -483,18 +487,12 @@ mjx-container[display="true"] + br {
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/04/13/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%AD%E6%95%B0%E6%8D%AE%E7%9A%84%E7%AE%80%E5%8D%95%E5%A4%84%E7%90%86/" title="机器学习中数据的简单处理">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">机器学习中数据的简单处理</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/02/06/%E9%AB%98%E4%B8%AD%E7%94%9F%E4%B9%9F%E8%83%BD%E5%AD%A6%E4%BC%9A%E7%9A%84%E6%8F%92%E5%80%BC%E7%AE%97%E6%B3%95/" title="高中生也能学会的插值算法">
-                        <span class="hidden-mobile">高中生也能学会的插值算法</span>
+                      <a href="/2023/02/24/%E4%BD%BF%E7%94%A8-Python-Clash%EF%BC%8C%E7%88%AC%E5%8F%96%E5%A4%96%E7%BD%91%E6%95%B0%E6%8D%AE/" title="使用 Python + Clash，爬取外网数据">
+                        <span class="hidden-mobile">使用 Python + Clash，爬取外网数据</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
