@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>部落冲突辅助 活死鱼判断+自动下兵</title>
+    <link href="/2024/03/24/%E9%83%A8%E8%90%BD%E5%86%B2%E7%AA%81%E8%BE%85%E5%8A%A9-%E6%B4%BB%E6%AD%BB%E9%B1%BC%E5%88%A4%E6%96%AD-%E8%87%AA%E5%8A%A8%E4%B8%8B%E5%85%B5/"/>
+    <url>/2024/03/24/%E9%83%A8%E8%90%BD%E5%86%B2%E7%AA%81%E8%BE%85%E5%8A%A9-%E6%B4%BB%E6%AD%BB%E9%B1%BC%E5%88%A4%E6%96%AD-%E8%87%AA%E5%8A%A8%E4%B8%8B%E5%85%B5/</url>
+    
+    <content type="html"><![CDATA[<p>随着时间的推移，我终于也来到了9本，开始需要大量黑油了，是时候完善这个脚本了。</p><span id="more"></span><h2 id="活死鱼判断">活死鱼判断</h2><p>这个是一直困扰着我的难题。开始做这个项目，我就一直在想该怎样完成这一任务。</p><ul><li><p>CNN Is All You Need?</p><p>最初的想法是直接用卷积神经网络来完成，收集上千个样本，然后直接训练。但是仔细思考，人是怎么判断活死鱼的呢？我是通过墓碑数和采集器是否是满的来判断，CNN能捕捉到这些小细节吗？我对此抱有怀疑。</p><p>接着，我就想使用多个分类器，就是CNN提取完特征后，分类器1判断墓碑数是多是少，分类器2判断采集器是否是满的，分类器3才判断是死鱼还是活鱼，前两个分类器是帮助模型收敛和防止过拟合的。</p><p>但是考虑到要标注上千张图片，还是作罢了。</p></li><li><p>You Only Look Once</p><p>又想到了用目标检测算法，检测图片中的奖牌、墓碑、满的采集器。现在训练Yolov8近乎是傻瓜式的。以及之前训练过一个用于微信跳一跳的Yolov5模型，当时只用了60张图片就训练出了一个很不错的模型，而且有相当强的泛化能力。所以我对这一方案进行了尝试，且非常有信息。然而，标注了30张图像，训练的结果非常糟糕。</p></li><li><p>传统CV</p><p>无奈，只能使用传统的CV了。判断的规则是，如果是灰牌且有5个以上的墓碑则是死鱼，或者有10个以上的墓碑也是死鱼。</p><p>关键的代码是</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">score = cv2.matchTemplate(origin, template, cv2.TM_CCOEFF_NORMED)<br></code></pre></td></tr></table></figure><p>每个墓碑会有几个像素的差异，而墓碑又非常小，导致几个像素的差异影响非常大，所以是通过计数得分＞0.75的个数，来近似墓碑的个数。</p></li></ul><h2 id="模拟下兵">模拟下兵</h2><p>入坑部落冲突的一个原因是，这个游戏居然可以滑动下兵！所以大家口中的“一字划”，我是真的“一字划”的。所以我希望能模拟出这种下兵方式。</p><p>仔细阅读Airtest的API文档和源码后，了解到了<code>airtest.core.android.touch_methods.base_touch</code>中有<code>DownEvent</code>、<code>UpEvent</code>、<code>MoveEvent</code>、<code>SleepEvent</code>这四个基本事件类，<code>contact</code>参数用来实现多触点，<code>contact=0</code>为触点1，<code>contact=1</code>为触点2，以此类推。这一module中，还有<code>BaseTouch</code>这一基类，定义了<code>swipe</code>、<code>pinch</code>、<code>touch</code>等手势，这些手势是由<code>DownEvent</code>、<code>UpEvent</code>、<code>MoveEvent</code>、<code>SleepEvent</code>组合成的。</p><p>在<code>airtest.core.android.touch_methods.minitouch</code>和<code>airtest.core.android.touch_methods.maxtouch</code>这两个module中，都基于<code>BaseTouch</code>实现了<code>MaxTouch</code>和<code>MiniTouch</code>。我个人的理解是，它们使用不同的方法去执行<code>DownEvent</code>、<code>UpEvent</code>、<code>MoveEvent</code>、<code>SleepEvent</code>，而<code>BaseTouch</code>是没有实现执行的方法的。</p><p>于是我继承了<code>MaxTouch</code>，去实现我的滑动下兵，简单来说就是一个<code>DownEvent</code>，加上数个<code>SleepEvent</code>、<code>MoveEvent</code>，最后来一个<code>UpEvent</code>。虽然尽力地去模仿人类真实下兵的样子了，但依旧有很大差别。</p><hr><p>此外，我还重写了<code>swipe</code>、<code>pinch</code>、<code>touch</code>这些手势，加上了一些随机的偏移。（主要是害怕被封号，不过也不知道这样有没有用）</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>编程</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>脚本</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>记一个五子棋AI</title>
     <link href="/2024/02/18/%E8%AE%B0%E4%B8%80%E4%B8%AA%E4%BA%94%E5%AD%90%E6%A3%8BAI/"/>
     <url>/2024/02/18/%E8%AE%B0%E4%B8%80%E4%B8%AA%E4%BA%94%E5%AD%90%E6%A3%8BAI/</url>

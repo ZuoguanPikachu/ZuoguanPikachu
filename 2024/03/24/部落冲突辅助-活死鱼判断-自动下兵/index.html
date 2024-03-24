@@ -16,24 +16,24 @@
   <meta name="author" content="坐观是只皮卡丘">
   <meta name="keywords" content="">
   
-    <meta name="description" content="在几年前的某个下午，我和她下五子棋，非常惨地，不记得是多少局了，只记得我全输了。于是，我就想写一个五子棋AI，从另一个角度去战胜她。">
+    <meta name="description" content="随着时间的推移，我终于也来到了9本，开始需要大量黑油了，是时候完善这个脚本了。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="记一个五子棋AI">
-<meta property="og:url" content="https://zuoguan.netlify.app/2024/02/18/%E8%AE%B0%E4%B8%80%E4%B8%AA%E4%BA%94%E5%AD%90%E6%A3%8BAI/index.html">
+<meta property="og:title" content="部落冲突辅助 活死鱼判断+自动下兵">
+<meta property="og:url" content="https://zuoguan.netlify.app/2024/03/24/%E9%83%A8%E8%90%BD%E5%86%B2%E7%AA%81%E8%BE%85%E5%8A%A9-%E6%B4%BB%E6%AD%BB%E9%B1%BC%E5%88%A4%E6%96%AD-%E8%87%AA%E5%8A%A8%E4%B8%8B%E5%85%B5/index.html">
 <meta property="og:site_name" content="坐观の小站">
-<meta property="og:description" content="在几年前的某个下午，我和她下五子棋，非常惨地，不记得是多少局了，只记得我全输了。于是，我就想写一个五子棋AI，从另一个角度去战胜她。">
+<meta property="og:description" content="随着时间的推移，我终于也来到了9本，开始需要大量黑油了，是时候完善这个脚本了。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://zuoguan-piclib-1257172707.cos.ap-guangzhou.myqcloud.com/assets/18.jpg">
-<meta property="article:published_time" content="2024-02-18T13:52:50.000Z">
-<meta property="article:modified_time" content="2024-03-24T15:02:44.209Z">
+<meta property="og:image" content="https://zuoguan-piclib-1257172707.cos.ap-guangzhou.myqcloud.com/assets/19.jpg">
+<meta property="article:published_time" content="2024-03-24T15:07:27.000Z">
+<meta property="article:modified_time" content="2024-03-24T16:13:58.207Z">
 <meta property="article:author" content="坐观是只皮卡丘">
-<meta property="article:tag" content="杂">
+<meta property="article:tag" content="脚本">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://zuoguan-piclib-1257172707.cos.ap-guangzhou.myqcloud.com/assets/18.jpg">
+<meta name="twitter:image" content="https://zuoguan-piclib-1257172707.cos.ap-guangzhou.myqcloud.com/assets/19.jpg">
   
   
   
-  <title>记一个五子棋AI - 坐观の小站</title>
+  <title>部落冲突辅助 活死鱼判断+自动下兵 - 坐观の小站</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -311,7 +311,7 @@ mjx-container[display="true"] + br {
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="记一个五子棋AI"></span>
+            <span id="subtitle" data-typed-text="部落冲突辅助 活死鱼判断+自动下兵"></span>
           
         </div>
 
@@ -322,8 +322,8 @@ mjx-container[display="true"] + br {
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-02-18 21:52" pubdate>
-          2024年2月18日 晚上
+        <time datetime="2024-03-24 23:07" pubdate>
+          2024年3月24日 晚上
         </time>
       </span>
     
@@ -334,7 +334,7 @@ mjx-container[display="true"] + br {
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.1k 字
+          1.4k 字
         
       </span>
     
@@ -345,7 +345,7 @@ mjx-container[display="true"] + br {
         
         
         
-          10 分钟
+          12 分钟
         
       </span>
     
@@ -383,36 +383,35 @@ mjx-container[display="true"] + br {
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">记一个五子棋AI</h1>
+            <h1 style="display: none">部落冲突辅助 活死鱼判断+自动下兵</h1>
             
             
               <div class="markdown-body">
                 
-                <p>在几年前的某个下午，我和她下五子棋，非常惨地，不记得是多少局了，只记得我全输了。于是，我就想写一个五子棋AI，从另一个角度去战胜她。</p>
+                <p>随着时间的推移，我终于也来到了9本，开始需要大量黑油了，是时候完善这个脚本了。</p>
 <span id="more"></span>
-<h2 id="最智障的ai">最智障的AI</h2>
-<p>这一版本的，简单来说就是，堵“活三”、“死四”，在能一子多用的点位落子。很快，我就发现了它与五子棋小白相比，唯一的优势就是不会看漏，仅此而已，对于“双活三”等杀棋毫无防备。</p>
-<h2 id="minmax算法与alpha-beta剪枝">MinMax算法与Alpha-Beta剪枝</h2>
-<p>在B站上搜索，看有无关于Python和五子棋的视频，于是就找到了这个：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1PJ411c7hM/">从零开始，编程制作一个五子棋游戏！【Python】</a></p>
-<p>很可惜的是，我这个小菜鸡没能学会，并且这个UP主实现的Python版太慢了。</p>
-<h2 id="dqn">DQN</h2>
-<p>浅浅地学习了深度学习和强化学习后，觉得DQN似乎可以完成这个任务。先是在3×3的井字棋上进行尝试，并没有成功。后续对深度学习继续学习后，更换了神经网络后，依旧没有成功。</p>
-<p>当时的我告诉了她，那次和她下棋惨败后，一直想做一个五子棋AI去战胜她，还向她展示了这个失败的井字棋AI。</p>
-<h2 id="mcts策略价值网络">MCTS+策略价值网络</h2>
-<p>已不记得是怎么的，在Github上搜索了Gomoku，看到了这个项目：<a target="_blank" rel="noopener" href="https://github.com/junxiaosong/AlphaZero_Gomoku/">AlphaZero-Gomoku</a></p>
-<p>当时的我想的只是替换该项目的神经网络，并不关注MCTS（不过作者也没怎么介绍MCTS）。自己去训练了15×15棋盘上的五子棋，训练了差不多两天，前几手下的还像那么回事，后面就不太行了。这个训练起来太慢了，有很多时间都花在了MCTS模拟上。而且没有GPU的话，推理的时候也很慢。</p>
-<h2 id="mcts">MCTS</h2>
-<p>又一次在Github上搜索了Gomoku，看到了这一个项目：<a target="_blank" rel="noopener" href="https://github.com/TsrmKumoko/gomoku_mcts">gomoku_mcts</a>，结合这一个视频：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1JD4y1Q7mV/">AI如何下棋？直观了解蒙特卡洛树搜索MCTS！！！</a>，学会了MCTS，很快也看明白了那个MCTS+策略价值网络的项目。</p>
-<p>因为Python的程序太慢，就写了C#版的。不得不说，ChatGPT真是太好用了，让ChatGPT把Python代码自己转为C#代码，基本上没有错误，复制下来基本上就能用了。在C#版上继续进行了许多优化，如：扩展子节点时，根据空白位附近棋子分布对该位置进行评分，取评分最高的前k个；roll
-out时，也不再纯随机，而是对评分进行softmax运算后，按概率进行roll
-out。</p>
-<p>至此已经实现了一个对战普通人有不俗胜率的五子棋AI了。</p>
-<p><img src="https://zuoguan-piclib-1257172707.cos.ap-guangzhou.myqcloud.com/%E8%AE%B0%E4%B8%80%E4%B8%AA%E4%BA%94%E5%AD%90%E6%A3%8BAI/image-20240218230832566.png" srcset="/img/loading.gif" lazyload alt="AI后手执白"></p>
-<p><img src="https://zuoguan-piclib-1257172707.cos.ap-guangzhou.myqcloud.com/%E8%AE%B0%E4%B8%80%E4%B8%AA%E4%BA%94%E5%AD%90%E6%A3%8BAI/image-20240218232119034.png" srcset="/img/loading.gif" lazyload alt="局面分析（对“双活三”等有一定防守能力）"></p>
-<p>不过我不知道这个五子棋AI能否战胜她，因为她已经不在我的身边了。。。</p>
-<h2 id="将来">将来</h2>
-<p>目前的版本，后手能力依旧较弱，后手对弈JS+MinMax的AI，在同等时间内，还无法取胜。</p>
-<p>等我有了自己的GPU，也许会去完成MCTS+策略价值网络的。不过，如前面所说，她已经不在我的身边了，做出了一个强大的AI，似乎也没什么意义了。</p>
+<h2 id="活死鱼判断">活死鱼判断</h2>
+<p>这个是一直困扰着我的难题。开始做这个项目，我就一直在想该怎样完成这一任务。</p>
+<ul>
+<li><p>CNN Is All You Need?</p>
+<p>最初的想法是直接用卷积神经网络来完成，收集上千个样本，然后直接训练。但是仔细思考，人是怎么判断活死鱼的呢？我是通过墓碑数和采集器是否是满的来判断，CNN能捕捉到这些小细节吗？我对此抱有怀疑。</p>
+<p>接着，我就想使用多个分类器，就是CNN提取完特征后，分类器1判断墓碑数是多是少，分类器2判断采集器是否是满的，分类器3才判断是死鱼还是活鱼，前两个分类器是帮助模型收敛和防止过拟合的。</p>
+<p>但是考虑到要标注上千张图片，还是作罢了。</p></li>
+<li><p>You Only Look Once</p>
+<p>又想到了用目标检测算法，检测图片中的奖牌、墓碑、满的采集器。现在训练Yolov8近乎是傻瓜式的。以及之前训练过一个用于微信跳一跳的Yolov5模型，当时只用了60张图片就训练出了一个很不错的模型，而且有相当强的泛化能力。所以我对这一方案进行了尝试，且非常有信息。然而，标注了30张图像，训练的结果非常糟糕。</p></li>
+<li><p>传统CV</p>
+<p>无奈，只能使用传统的CV了。判断的规则是，如果是灰牌且有5个以上的墓碑则是死鱼，或者有10个以上的墓碑也是死鱼。</p>
+<p>关键的代码是</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">score = cv2.matchTemplate(origin, template, cv2.TM_CCOEFF_NORMED)<br></code></pre></td></tr></table></figure>
+<p>每个墓碑会有几个像素的差异，而墓碑又非常小，导致几个像素的差异影响非常大，所以是通过计数得分＞0.75的个数，来近似墓碑的个数。</p></li>
+</ul>
+<h2 id="模拟下兵">模拟下兵</h2>
+<p>入坑部落冲突的一个原因是，这个游戏居然可以滑动下兵！所以大家口中的“一字划”，我是真的“一字划”的。所以我希望能模拟出这种下兵方式。</p>
+<p>仔细阅读Airtest的API文档和源码后，了解到了<code>airtest.core.android.touch_methods.base_touch</code>中有<code>DownEvent</code>、<code>UpEvent</code>、<code>MoveEvent</code>、<code>SleepEvent</code>这四个基本事件类，<code>contact</code>参数用来实现多触点，<code>contact=0</code>为触点1，<code>contact=1</code>为触点2，以此类推。这一module中，还有<code>BaseTouch</code>这一基类，定义了<code>swipe</code>、<code>pinch</code>、<code>touch</code>等手势，这些手势是由<code>DownEvent</code>、<code>UpEvent</code>、<code>MoveEvent</code>、<code>SleepEvent</code>组合成的。</p>
+<p>在<code>airtest.core.android.touch_methods.minitouch</code>和<code>airtest.core.android.touch_methods.maxtouch</code>这两个module中，都基于<code>BaseTouch</code>实现了<code>MaxTouch</code>和<code>MiniTouch</code>。我个人的理解是，它们使用不同的方法去执行<code>DownEvent</code>、<code>UpEvent</code>、<code>MoveEvent</code>、<code>SleepEvent</code>，而<code>BaseTouch</code>是没有实现执行的方法的。</p>
+<p>于是我继承了<code>MaxTouch</code>，去实现我的滑动下兵，简单来说就是一个<code>DownEvent</code>，加上数个<code>SleepEvent</code>、<code>MoveEvent</code>，最后来一个<code>UpEvent</code>。虽然尽力地去模仿人类真实下兵的样子了，但依旧有很大差别。</p>
+<hr>
+<p>此外，我还重写了<code>swipe</code>、<code>pinch</code>、<code>touch</code>这些手势，加上了一些随机的偏移。（主要是害怕被封号，不过也不知道这样有没有用）</p>
 
                 
               </div>
@@ -431,7 +430,7 @@ out。</p>
     
       <span class="category-chain">
         
-  <a href="/categories/%E5%85%B6%E4%BB%96/" class="category-chain-item">其他</a>
+  <a href="/categories/%E7%BC%96%E7%A8%8B/" class="category-chain-item">编程</a>
   
   
 
@@ -446,7 +445,7 @@ out。</p>
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E6%9D%82/">#杂</a>
+        <a href="/tags/%E8%84%9A%E6%9C%AC/">#脚本</a>
       
     </div>
   
@@ -458,8 +457,8 @@ out。</p>
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>记一个五子棋AI</div>
-      <div>https://zuoguan.netlify.app/2024/02/18/记一个五子棋AI/</div>
+      <div>部落冲突辅助 活死鱼判断+自动下兵</div>
+      <div>https://zuoguan.netlify.app/2024/03/24/部落冲突辅助-活死鱼判断-自动下兵/</div>
     </div>
     <div class="license-meta">
       
@@ -471,7 +470,7 @@ out。</p>
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年2月18日</div>
+          <div>2024年3月24日</div>
         </div>
       
       
@@ -503,18 +502,12 @@ out。</p>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/03/24/%E9%83%A8%E8%90%BD%E5%86%B2%E7%AA%81%E8%BE%85%E5%8A%A9-%E6%B4%BB%E6%AD%BB%E9%B1%BC%E5%88%A4%E6%96%AD-%E8%87%AA%E5%8A%A8%E4%B8%8B%E5%85%B5/" title="部落冲突辅助 活死鱼判断+自动下兵">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">部落冲突辅助 活死鱼判断+自动下兵</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/02/03/%E9%83%A8%E8%90%BD%E5%86%B2%E7%AA%81%E8%BE%85%E5%8A%A9-%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB/" title="部落冲突辅助 数字识别">
-                        <span class="hidden-mobile">部落冲突辅助 数字识别</span>
+                      <a href="/2024/02/18/%E8%AE%B0%E4%B8%80%E4%B8%AA%E4%BA%94%E5%AD%90%E6%A3%8BAI/" title="记一个五子棋AI">
+                        <span class="hidden-mobile">记一个五子棋AI</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
