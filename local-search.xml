@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>软链接</title>
+    <link href="/2024/08/21/%E8%BD%AF%E9%93%BE%E6%8E%A5/"/>
+    <url>/2024/08/21/%E8%BD%AF%E9%93%BE%E6%8E%A5/</url>
+    
+    <content type="html"><![CDATA[<p>第一次了解到软链接，是在这个视频：<a href="https://www.bilibili.com/video/BV1Ct411P7ma">黑科技？你不知道的一种快捷方式，没有空间占用。在这种快捷方式面前，普通的快捷方式都是弟弟</a>。</p><p>最近，电脑的C盘又红了，就想着把一些大文件移到D盘，然后再用软链接映射回C盘原本的位置。但是PowerShell里没有<code>mklink</code>这个命令，需要用<code>New-Item</code>，遂记录一下。</p><p>现在我将<code>C:\Users\zuoguan\.nuget</code>剪切至<code>D:\.nuget</code></p><p>创建软链接：</p><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-built_in">New-Item</span> <span class="hljs-literal">-ItemType</span> SymbolicLink <span class="hljs-literal">-Path</span> <span class="hljs-string">"C:\Users\zuoguan\.nuget"</span> <span class="hljs-literal">-Target</span> <span class="hljs-string">"D:\.nuget"</span><br></code></pre></td></tr></table></figure><hr><blockquote><p>努力攒钱换电脑是当务之急！！！</p></blockquote>]]></content>
+    
+    
+    <categories>
+      
+      <category>编程</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Windows</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Python实现分段下载器</title>
     <link href="/2024/05/14/Python%E5%AE%9E%E7%8E%B0%E5%88%86%E6%AE%B5%E4%B8%8B%E8%BD%BD%E5%99%A8/"/>
     <url>/2024/05/14/Python%E5%AE%9E%E7%8E%B0%E5%88%86%E6%AE%B5%E4%B8%8B%E8%BD%BD%E5%99%A8/</url>
