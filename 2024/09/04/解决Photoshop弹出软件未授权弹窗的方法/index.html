@@ -16,26 +16,24 @@
   <meta name="author" content="坐观是只皮卡丘">
   <meta name="keywords" content="">
   
-    <meta name="description" content="最近在尝试使用AI进行文本分类。（我不是专业的，只是参考类似的例子，学着去搭建神经网络。也只能弄一些简单的）因为数据集是自己收集制作的，时间有限，所以数据集不大，使得模型过拟合了。因为最终效果不好，就不放出整个项目的代码，只放出神经网络模型的代码，既作为个人的记录，也供参考学习。">
+    <meta name="description" content="最近我的Photoshop出现了未授权的弹窗  在网上找到了解决方法，在博客里记录一下，做个备份。 解决方法的基本思路就是阻止Photoshop联网。  防火墙 【控制面板】-&gt;【Windows Defender 防火墙】-&gt;【高级设置】-&gt;【出站规则】-&gt;【新建规则】-&gt;【程序，下一页】-&gt;【Photoshop.exe路径，下一页】-&gt;【阻">
 <meta property="og:type" content="article">
-<meta property="og:title" content="用于文本分类的神经网络">
-<meta property="og:url" content="https://zuoguan.netlify.app/2022/09/18/%E7%94%A8%E4%BA%8E%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E7%9A%84%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/index.html">
+<meta property="og:title" content="解决Photoshop弹出软件未授权弹窗的方法">
+<meta property="og:url" content="https://zuoguan.netlify.app/2024/09/04/%E8%A7%A3%E5%86%B3Photoshop%E5%BC%B9%E5%87%BA%E8%BD%AF%E4%BB%B6%E6%9C%AA%E6%8E%88%E6%9D%83%E5%BC%B9%E7%AA%97%E7%9A%84%E6%96%B9%E6%B3%95/index.html">
 <meta property="og:site_name" content="坐观の小站">
-<meta property="og:description" content="最近在尝试使用AI进行文本分类。（我不是专业的，只是参考类似的例子，学着去搭建神经网络。也只能弄一些简单的）因为数据集是自己收集制作的，时间有限，所以数据集不大，使得模型过拟合了。因为最终效果不好，就不放出整个项目的代码，只放出神经网络模型的代码，既作为个人的记录，也供参考学习。">
+<meta property="og:description" content="最近我的Photoshop出现了未授权的弹窗  在网上找到了解决方法，在博客里记录一下，做个备份。 解决方法的基本思路就是阻止Photoshop联网。  防火墙 【控制面板】-&gt;【Windows Defender 防火墙】-&gt;【高级设置】-&gt;【出站规则】-&gt;【新建规则】-&gt;【程序，下一页】-&gt;【Photoshop.exe路径，下一页】-&gt;【阻">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://zuoguan-piclib-1257172707.cos.ap-guangzhou.myqcloud.com/assets/1.jpg">
-<meta property="article:published_time" content="2022-09-18T15:06:08.000Z">
-<meta property="article:modified_time" content="2023-02-02T06:56:25.236Z">
+<meta property="og:image" content="https://zuoguan-piclib-1257172707.cos.ap-guangzhou.myqcloud.com/assets/23.jpg">
+<meta property="article:published_time" content="2024-09-04T04:14:15.000Z">
+<meta property="article:modified_time" content="2024-09-04T04:45:19.693Z">
 <meta property="article:author" content="坐观是只皮卡丘">
-<meta property="article:tag" content="AI">
-<meta property="article:tag" content="NLP">
-<meta property="article:tag" content="神经网络">
+<meta property="article:tag" content="Photoshop">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://zuoguan-piclib-1257172707.cos.ap-guangzhou.myqcloud.com/assets/1.jpg">
+<meta name="twitter:image" content="https://zuoguan-piclib-1257172707.cos.ap-guangzhou.myqcloud.com/assets/23.jpg">
   
   
   
-  <title>用于文本分类的神经网络 - 坐观の小站</title>
+  <title>解决Photoshop弹出软件未授权弹窗的方法 - 坐观の小站</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -325,7 +323,7 @@ mjx-container[display="true"] + br {
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="用于文本分类的神经网络"></span>
+            <span id="subtitle" data-typed-text="解决Photoshop弹出软件未授权弹窗的方法"></span>
           
         </div>
 
@@ -336,8 +334,8 @@ mjx-container[display="true"] + br {
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-09-18 23:06" pubdate>
-          2022年9月18日 晚上
+        <time datetime="2024-09-04 12:14" pubdate>
+          2024年9月4日 中午
         </time>
       </span>
     
@@ -348,7 +346,7 @@ mjx-container[display="true"] + br {
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.1k 字
+          459 字
         
       </span>
     
@@ -359,7 +357,7 @@ mjx-container[display="true"] + br {
         
         
         
-          27 分钟
+          4 分钟
         
       </span>
     
@@ -397,41 +395,30 @@ mjx-container[display="true"] + br {
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">用于文本分类的神经网络</h1>
+            <h1 style="display: none">解决Photoshop弹出软件未授权弹窗的方法</h1>
             
             
               <div class="markdown-body">
                 
-                <p>最近在尝试使用AI进行文本分类。（我不是专业的，只是参考类似的例子，学着去搭建神经网络。也只能弄一些简单的）因为数据集是自己收集制作的，时间有限，所以数据集不大，使得模型过拟合了。因为最终效果不好，就不放出整个项目的代码，只放出神经网络模型的代码，既作为个人的记录，也供参考学习。</p>
-<span id="more"></span>
-<h2 id="bilstm">BiLSTM</h2>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch<br><span class="hljs-keyword">import</span> torch.nn.functional <span class="hljs-keyword">as</span> F<br><br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">BiLSTM</span>(torch.nn.Module):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, vocab_size, embed_size, hidden_size, num_layers, num_classes</span>):<br>        <span class="hljs-built_in">super</span>().__init__()<br><br>        self.embedding = torch.nn.Embedding(vocab_size, embed_size)<br>        self.lstm = torch.nn.LSTM(embed_size, hidden_size, num_layers=num_layers, batch_first=<span class="hljs-literal">True</span>, bidirectional=<span class="hljs-literal">True</span>)<br>        self.linear = torch.nn.Linear(hidden_size, num_classes)<br>        self.softmax = torch.nn.Softmax(dim=<span class="hljs-number">1</span>)<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, inputs</span>):<br>        emb = self.embedding(inputs)<br>        <span class="hljs-comment"># [batch_size, time_steps, embed_size]</span><br><br>        output, (hidden, _) = self.lstm(emb)<br>        <span class="hljs-comment"># output: [batch_size, time_steps, num_directions*hidden_size]</span><br>        <span class="hljs-comment"># hidden: [num_layers*num_directions, batch_size, hidden_size]</span><br><br>        hidden = hidden.permute(<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">2</span>)<br>        <span class="hljs-comment"># [batch_size, num_layers*num_directions, hidden_size]</span><br><br>        hidden = torch.<span class="hljs-built_in">sum</span>(hidden, dim=<span class="hljs-number">1</span>)<br>        <span class="hljs-comment"># [batch_size, 1, hidden_size]</span><br><br>        hidden = hidden.squeeze(dim=<span class="hljs-number">1</span>)<br>        <span class="hljs-comment"># [batch_size, hidden_size]</span><br><br>        out = F.softmax(self.linear(hidden), dim=<span class="hljs-number">1</span>)<br>        <span class="hljs-comment"># [batch_size, num_classes]</span><br><br>        <span class="hljs-keyword">return</span> out<br></code></pre></td></tr></table></figure>
-<h2 id="bilstm-attention">BiLSTM-Attention</h2>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch<br><span class="hljs-keyword">import</span> torch.nn.functional <span class="hljs-keyword">as</span> F<br><br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">BiLSTMAttn</span>(torch.nn.Module):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, vocab_size, embed_size, hidden_size, num_layers, num_classes</span>):<br>        <span class="hljs-built_in">super</span>(BiLSTMAttn, self).__init__()<br><br>        self.embedding = torch.nn.Embedding(vocab_size, embed_size)<br>        self.lstm = torch.nn.LSTM(embed_size, hidden_size, num_layers=num_layers, batch_first=<span class="hljs-literal">True</span>, bidirectional=<span class="hljs-literal">True</span>)<br>        self.attention_weights_layer = torch.nn.Sequential(<br>            torch.nn.Linear(hidden_size, hidden_size),<br>            torch.nn.ReLU(inplace=<span class="hljs-literal">True</span>)<br>        )<br>        self.liner = torch.nn.Linear(hidden_size, num_classes)<br>        self.softmax = torch.nn.Softmax(dim=<span class="hljs-number">1</span>)<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, inputs</span>):<br>        emb = self.embedding(inputs)<br>        <span class="hljs-comment"># [batch_size, time_steps, embed_size]</span><br><br>        output, (hidden, _) = self.lstm(emb)<br>        <span class="hljs-comment"># output: [batch_size, time_steps, num_directions*hidden_size]</span><br>        <span class="hljs-comment"># hidden: [num_layers*num_directions, batch_size, hidden_size]</span><br><br>        <span class="hljs-string">"""将双向lstm的输出拆分为前向输出和后向输出"""</span><br>        (forward_out, backward_out) = torch.chunk(output, <span class="hljs-number">2</span>, dim=<span class="hljs-number">2</span>)<br>        out = forward_out + backward_out<br>        <span class="hljs-comment"># [batch_size, time_steps, hidden_size]</span><br><br>        hidden = hidden.permute(<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">2</span>)<br>        <span class="hljs-comment"># [batch_size, num_layers*num_directions,  hidden_size]</span><br><br>        hidden = torch.<span class="hljs-built_in">sum</span>(hidden, dim=<span class="hljs-number">1</span>)<br>        <span class="hljs-comment"># [batch_size, 1,  hidden_size]</span><br><br>        hidden = hidden.squeeze(dim=<span class="hljs-number">1</span>)<br>        <span class="hljs-comment"># [batch_size, hidden_size]</span><br><br>        <span class="hljs-string">"""用hidden生成attention的权重"""</span><br>        attention_w = self.attention_weights_layer(hidden)<br>        <span class="hljs-comment"># [batch_size, hidden_size]</span><br>        attention_w = attention_w.unsqueeze(dim=<span class="hljs-number">1</span>)<br>        <span class="hljs-comment"># [batch_size, 1, hidden_size]</span><br><br>        attention_context = torch.bmm(attention_w, out.transpose(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>))<br>        softmax_w = F.softmax(attention_context, dim=-<span class="hljs-number">1</span>)<br>        <span class="hljs-comment"># [batch_size, 1, time_steps]</span><br><br>        out = torch.bmm(softmax_w, out)<br>        <span class="hljs-comment"># [batch_size, 1, hidden_size]</span><br><br>        out = out.squeeze(dim=<span class="hljs-number">1</span>)<br>        <span class="hljs-comment"># [batch_size, hidden_size]</span><br><br>        out = F.softmax(self.linear(hidden), dim=<span class="hljs-number">1</span>)<br>        <span class="hljs-comment"># [batch_size, num_classes]</span><br><br>        <span class="hljs-keyword">return</span> out<br></code></pre></td></tr></table></figure>
-<h2 id="一些函数的作用">一些函数的作用</h2>
+                <p>最近我的Photoshop出现了未授权的弹窗</p>
+<p><img src="https://zuoguan-piclib-1257172707.cos.ap-guangzhou.myqcloud.com/%E8%A7%A3%E5%86%B3Photoshop%E5%BC%B9%E5%87%BA%E8%BD%AF%E4%BB%B6%E6%9C%AA%E6%8E%88%E6%9D%83%E5%BC%B9%E7%AA%97%E7%9A%84%E6%96%B9%E6%B3%95/84d9803f798bb883db57cf3c716f581e79dbd444.jpg@1256w_978h_!web-article-pic.avif" srcset="/img/loading.gif" lazyload alt="弹窗"></p>
+<p>在网上找到了解决方法，在博客里记录一下，做个备份。</p>
+<p>解决方法的基本思路就是阻止Photoshop联网。</p>
 <ul>
-<li><p><code>torch.mm</code>、<code>torch.bmm</code>、<code>torch.matmul</code></p>
-<p><img src="https://zuoguan-piclib-1257172707.cos.ap-guangzhou.myqcloud.com/用于文本分类的神经网络/mm.png" srcset="/img/loading.gif" lazyload alt="mm"><br>
-<img src="https://zuoguan-piclib-1257172707.cos.ap-guangzhou.myqcloud.com/用于文本分类的神经网络/bmm.png" srcset="/img/loading.gif" lazyload alt="bmm"><br>
-<img src="https://zuoguan-piclib-1257172707.cos.ap-guangzhou.myqcloud.com/用于文本分类的神经网络/matmul.png" srcset="/img/loading.gif" lazyload alt="matmul"></p>
-<p><strong>总结：</strong></p>
-<ul>
-<li><code>torch.mm</code>只能进行矩阵乘法，(n×m)的tensor与(m×p)的tensor相乘，得到(n×p)的tensor​</li>
-<li><code>torch.bmm</code>进行batch矩阵乘法，即第一个维度是batch_size，(batch_size×n×m)​的tensor与(batch_size×m×p)的tensor相乘，得到(batch_size×n×p)的tensor</li>
-<li><code>torch.matmul</code>可以进行张量乘法</li>
-</ul></li>
+<li><p><strong>防火墙</strong></p>
+<p>【控制面板】-&gt;【Windows Defender
+防火墙】-&gt;【高级设置】-&gt;【出站规则】-&gt;【新建规则】-&gt;【程序，下一页】-&gt;【Photoshop.exe路径，下一页】-&gt;【阻止连接，下一页】-&gt;【全选，下一页】-&gt;【填写名称，完成】</p>
+<p><img src="https://zuoguan-piclib-1257172707.cos.ap-guangzhou.myqcloud.com/%E8%A7%A3%E5%86%B3Photoshop%E5%BC%B9%E5%87%BA%E8%BD%AF%E4%BB%B6%E6%9C%AA%E6%8E%88%E6%9D%83%E5%BC%B9%E7%AA%97%E7%9A%84%E6%96%B9%E6%B3%95/image-20240904123826397.png" srcset="/img/loading.gif" lazyload alt="1"></p>
+<p><img src="https://zuoguan-piclib-1257172707.cos.ap-guangzhou.myqcloud.com/%E8%A7%A3%E5%86%B3Photoshop%E5%BC%B9%E5%87%BA%E8%BD%AF%E4%BB%B6%E6%9C%AA%E6%8E%88%E6%9D%83%E5%BC%B9%E7%AA%97%E7%9A%84%E6%96%B9%E6%B3%95/image-20240904123931363.png" srcset="/img/loading.gif" lazyload alt="2"></p>
+<p><img src="https://zuoguan-piclib-1257172707.cos.ap-guangzhou.myqcloud.com/%E8%A7%A3%E5%86%B3Photoshop%E5%BC%B9%E5%87%BA%E8%BD%AF%E4%BB%B6%E6%9C%AA%E6%8E%88%E6%9D%83%E5%BC%B9%E7%AA%97%E7%9A%84%E6%96%B9%E6%B3%95/image-20240904124011597.png" srcset="/img/loading.gif" lazyload alt="3"></p></li>
+<li><p><strong>Clash</strong></p>
+<p>在使用Clash时，会绕过防火墙，导致上述方法失效，需要在Clash中配置规则。</p>
+<p>【Clash】-&gt;【Settings】-&gt;【Profiles】-&gt;【Parsers】-&gt;【Edit】</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">parsers:</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-attr">url:</span> <span class="hljs-string">订阅链接</span><br>    <span class="hljs-attr">yaml:</span><br>      <span class="hljs-attr">prepend-rules:</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-string">PROCESS-NAME,Photoshop.exe,REJECT</span><br></code></pre></td></tr></table></figure></li>
 </ul>
-<hr>
-<ul>
-<li><p><code>torch.transpose</code>、<code>torch.permute</code></p>
-<p><img src="https://zuoguan-piclib-1257172707.cos.ap-guangzhou.myqcloud.com/用于文本分类的神经网络/transpose.png" srcset="/img/loading.gif" lazyload alt="transpose"><br>
-<img src="https://zuoguan-piclib-1257172707.cos.ap-guangzhou.myqcloud.com/用于文本分类的神经网络/permute.png" srcset="/img/loading.gif" lazyload alt="permute"></p>
-<p><strong>总结：</strong></p>
-<ul>
-<li><code>torch.transpose</code>交换tensor中的两个维度</li>
-<li><code>torch.permute</code>按顺序将tensor换位</li>
-</ul></li>
-</ul>
+<p>参考资料：</p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv20301702/">【PS被禁用】解决PS跳出弹窗提示软件未经授权将被禁用方法</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/S1even_2hang/article/details/132163565">Adobe系软件非正版报错解决（非防火墙办法）</a></p>
 
                 
               </div>
@@ -450,7 +437,7 @@ mjx-container[display="true"] + br {
     
       <span class="category-chain">
         
-  <a href="/categories/%E7%BC%96%E7%A8%8B/" class="category-chain-item">编程</a>
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/" class="category-chain-item">计算机</a>
   
   
 
@@ -465,11 +452,7 @@ mjx-container[display="true"] + br {
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/AI/">#AI</a>
-      
-        <a href="/tags/NLP/">#NLP</a>
-      
-        <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">#神经网络</a>
+        <a href="/tags/Photoshop/">#Photoshop</a>
       
     </div>
   
@@ -481,8 +464,8 @@ mjx-container[display="true"] + br {
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>用于文本分类的神经网络</div>
-      <div>https://zuoguan.netlify.app/2022/09/18/用于文本分类的神经网络/</div>
+      <div>解决Photoshop弹出软件未授权弹窗的方法</div>
+      <div>https://zuoguan.netlify.app/2024/09/04/解决Photoshop弹出软件未授权弹窗的方法/</div>
     </div>
     <div class="license-meta">
       
@@ -494,7 +477,7 @@ mjx-container[display="true"] + br {
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年9月18日</div>
+          <div>2024年9月4日</div>
         </div>
       
       
@@ -526,18 +509,12 @@ mjx-container[display="true"] + br {
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/09/18/%E6%8A%97%E4%BD%93%E5%8C%96%E5%AD%A6%E7%BB%93%E6%9E%84%E7%9A%84%E5%8F%91%E7%8E%B0/" title="抗体化学结构的发现">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">抗体化学结构的发现</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/09/18/hello-world/" title="Hello World">
-                        <span class="hidden-mobile">Hello World</span>
+                      <a href="/2024/08/21/%E8%BD%AF%E9%93%BE%E6%8E%A5/" title="软链接">
+                        <span class="hidden-mobile">软链接</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

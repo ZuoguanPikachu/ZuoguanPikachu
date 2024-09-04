@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>解决Photoshop弹出软件未授权弹窗的方法</title>
+    <link href="/2024/09/04/%E8%A7%A3%E5%86%B3Photoshop%E5%BC%B9%E5%87%BA%E8%BD%AF%E4%BB%B6%E6%9C%AA%E6%8E%88%E6%9D%83%E5%BC%B9%E7%AA%97%E7%9A%84%E6%96%B9%E6%B3%95/"/>
+    <url>/2024/09/04/%E8%A7%A3%E5%86%B3Photoshop%E5%BC%B9%E5%87%BA%E8%BD%AF%E4%BB%B6%E6%9C%AA%E6%8E%88%E6%9D%83%E5%BC%B9%E7%AA%97%E7%9A%84%E6%96%B9%E6%B3%95/</url>
+    
+    <content type="html"><![CDATA[<p>最近我的Photoshop出现了未授权的弹窗</p><p><img src="https://zuoguan-piclib-1257172707.cos.ap-guangzhou.myqcloud.com/%E8%A7%A3%E5%86%B3Photoshop%E5%BC%B9%E5%87%BA%E8%BD%AF%E4%BB%B6%E6%9C%AA%E6%8E%88%E6%9D%83%E5%BC%B9%E7%AA%97%E7%9A%84%E6%96%B9%E6%B3%95/84d9803f798bb883db57cf3c716f581e79dbd444.jpg@1256w_978h_!web-article-pic.avif" alt="弹窗"></p><p>在网上找到了解决方法，在博客里记录一下，做个备份。</p><p>解决方法的基本思路就是阻止Photoshop联网。</p><ul><li><p><strong>防火墙</strong></p><p>【控制面板】-&gt;【Windows Defender防火墙】-&gt;【高级设置】-&gt;【出站规则】-&gt;【新建规则】-&gt;【程序，下一页】-&gt;【Photoshop.exe路径，下一页】-&gt;【阻止连接，下一页】-&gt;【全选，下一页】-&gt;【填写名称，完成】</p><p><img src="https://zuoguan-piclib-1257172707.cos.ap-guangzhou.myqcloud.com/%E8%A7%A3%E5%86%B3Photoshop%E5%BC%B9%E5%87%BA%E8%BD%AF%E4%BB%B6%E6%9C%AA%E6%8E%88%E6%9D%83%E5%BC%B9%E7%AA%97%E7%9A%84%E6%96%B9%E6%B3%95/image-20240904123826397.png" alt="1"></p><p><img src="https://zuoguan-piclib-1257172707.cos.ap-guangzhou.myqcloud.com/%E8%A7%A3%E5%86%B3Photoshop%E5%BC%B9%E5%87%BA%E8%BD%AF%E4%BB%B6%E6%9C%AA%E6%8E%88%E6%9D%83%E5%BC%B9%E7%AA%97%E7%9A%84%E6%96%B9%E6%B3%95/image-20240904123931363.png" alt="2"></p><p><img src="https://zuoguan-piclib-1257172707.cos.ap-guangzhou.myqcloud.com/%E8%A7%A3%E5%86%B3Photoshop%E5%BC%B9%E5%87%BA%E8%BD%AF%E4%BB%B6%E6%9C%AA%E6%8E%88%E6%9D%83%E5%BC%B9%E7%AA%97%E7%9A%84%E6%96%B9%E6%B3%95/image-20240904124011597.png" alt="3"></p></li><li><p><strong>Clash</strong></p><p>在使用Clash时，会绕过防火墙，导致上述方法失效，需要在Clash中配置规则。</p><p>【Clash】-&gt;【Settings】-&gt;【Profiles】-&gt;【Parsers】-&gt;【Edit】</p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">parsers:</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-attr">url:</span> <span class="hljs-string">订阅链接</span><br>    <span class="hljs-attr">yaml:</span><br>      <span class="hljs-attr">prepend-rules:</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-string">PROCESS-NAME,Photoshop.exe,REJECT</span><br></code></pre></td></tr></table></figure></li></ul><p>参考资料：</p><p><a href="https://www.bilibili.com/read/cv20301702/">【PS被禁用】解决PS跳出弹窗提示软件未经授权将被禁用方法</a></p><p><a href="https://blog.csdn.net/S1even_2hang/article/details/132163565">Adobe系软件非正版报错解决（非防火墙办法）</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>计算机</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Photoshop</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>软链接</title>
     <link href="/2024/08/21/%E8%BD%AF%E9%93%BE%E6%8E%A5/"/>
     <url>/2024/08/21/%E8%BD%AF%E9%93%BE%E6%8E%A5/</url>
@@ -13,7 +38,7 @@
     
     <categories>
       
-      <category>编程</category>
+      <category>计算机</category>
       
     </categories>
     
