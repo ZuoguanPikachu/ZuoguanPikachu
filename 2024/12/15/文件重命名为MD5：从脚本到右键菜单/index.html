@@ -19,25 +19,26 @@
   <meta name="author" content="zuoguan">
   <meta name="keywords" content="">
   
-    <meta name="description" content="scipy.stats提供了许多统计检验方法  单样本t检验   1scipy.stats.ttest_1samp(a, popmean, axis&#x3D;0, nan_policy&#x3D;&#x27;propagate&#x27;, alternative&#x3D;&quot;two-sided&quot;)  配对样本t检验   1scipy.stats.ttest_rel(a, b, axis&#x3D;0, nan_p">
+    <meta name="description" content="有的时候希望将MD5直接作为文件名，于是就想实现这样一个功能：右键一个&#x2F;多个文件时，菜单中出现一个选项：MD5 Rename，点击后会将文件重命名为其MD5值 编写脚本创建一个脚本来计算文件的 MD5 值并重命名文件 1234567891011121314151617181920212223242526272829303132333435363738394041424344import">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用SciPy进行统计分析">
-<meta property="og:url" content="https://zuoguan.netlify.app/2024/11/20/%E4%BD%BF%E7%94%A8SciPy%E8%BF%9B%E8%A1%8C%E7%BB%9F%E8%AE%A1%E5%88%86%E6%9E%90/index.html">
+<meta property="og:title" content="文件重命名为MD5：从脚本到右键菜单">
+<meta property="og:url" content="https://zuoguan.netlify.app/2024/12/15/%E6%96%87%E4%BB%B6%E9%87%8D%E5%91%BD%E5%90%8D%E4%B8%BAMD5%EF%BC%9A%E4%BB%8E%E8%84%9A%E6%9C%AC%E5%88%B0%E5%8F%B3%E9%94%AE%E8%8F%9C%E5%8D%95/index.html">
 <meta property="og:site_name" content="坐观の小站">
-<meta property="og:description" content="scipy.stats提供了许多统计检验方法  单样本t检验   1scipy.stats.ttest_1samp(a, popmean, axis&#x3D;0, nan_policy&#x3D;&#x27;propagate&#x27;, alternative&#x3D;&quot;two-sided&quot;)  配对样本t检验   1scipy.stats.ttest_rel(a, b, axis&#x3D;0, nan_p">
+<meta property="og:description" content="有的时候希望将MD5直接作为文件名，于是就想实现这样一个功能：右键一个&#x2F;多个文件时，菜单中出现一个选项：MD5 Rename，点击后会将文件重命名为其MD5值 编写脚本创建一个脚本来计算文件的 MD5 值并重命名文件 1234567891011121314151617181920212223242526272829303132333435363738394041424344import">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://zuoguan-piclib-1257172707.cos.ap-guangzhou.myqcloud.com/assets/4.jpg?imageMogr2/thumbnail/700x320%3E">
-<meta property="article:published_time" content="2024-11-20T10:00:31.000Z">
-<meta property="article:modified_time" content="2024-12-15T11:55:18.098Z">
+<meta property="og:image" content="https://zuoguan-piclib-1257172707.cos.ap-guangzhou.myqcloud.com/assets/14.jpg?imageMogr2/thumbnail/700x320%3E">
+<meta property="article:published_time" content="2024-12-15T11:13:17.000Z">
+<meta property="article:modified_time" content="2024-12-15T11:55:34.530Z">
 <meta property="article:author" content="zuoguan">
-<meta property="article:tag" content="统计">
+<meta property="article:tag" content="Windows">
+<meta property="article:tag" content="注册表">
 <meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://zuoguan-piclib-1257172707.cos.ap-guangzhou.myqcloud.com/assets/4.jpg?imageMogr2/thumbnail/700x320%3E">
+<meta name="twitter:image" content="https://zuoguan-piclib-1257172707.cos.ap-guangzhou.myqcloud.com/assets/14.jpg?imageMogr2/thumbnail/700x320%3E">
   
   
   
-  <title>使用SciPy进行统计分析 - 坐观の小站</title>
+  <title>文件重命名为MD5：从脚本到右键菜单 - 坐观の小站</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -209,13 +210,13 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('https://zuoguan-piclib-1257172707.cos.ap-guangzhou.myqcloud.com/assets/4.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('https://zuoguan-piclib-1257172707.cos.ap-guangzhou.myqcloud.com/assets/14.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="使用SciPy进行统计分析"></span>
+            <span id="subtitle" data-typed-text="文件重命名为MD5：从脚本到右键菜单"></span>
           
         </div>
 
@@ -226,8 +227,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-11-20 18:00" pubdate>
-          2024年11月20日 晚上
+        <time datetime="2024-12-15 19:13" pubdate>
+          2024年12月15日 晚上
         </time>
       </span>
     
@@ -238,7 +239,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          636 字
+          395 字
         
       </span>
     
@@ -249,7 +250,7 @@
         
         
         
-          6 分钟
+          4 分钟
         
       </span>
     
@@ -286,70 +287,32 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">使用SciPy进行统计分析</h1>
+            <h1 id="seo-header">文件重命名为MD5：从脚本到右键菜单</h1>
             
             
               <div class="markdown-body">
                 
-                <p><code>scipy.stats</code>提供了许多统计检验方法</p>
-<ul>
-<li><p>单样本t检验</p>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">scipy.stats.ttest_1samp(a, popmean, axis=<span class="hljs-number">0</span>, nan_policy=<span class="hljs-string">&#x27;propagate&#x27;</span>, alternative=<span class="hljs-string">&quot;two-sided&quot;</span>)<br></code></pre></td></tr></table></figure>
+                <p>有的时候希望将MD5直接作为文件名，于是就想实现这样一个功能：右键一个&#x2F;多个文件时，菜单中出现一个选项：MD5 Rename，点击后会将文件重命名为其MD5值</p>
+<h2 id="编写脚本"><a href="#编写脚本" class="headerlink" title="编写脚本"></a>编写脚本</h2><p>创建一个脚本来计算文件的 MD5 值并重命名文件</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> hashlib<br><span class="hljs-keyword">import</span> os<br><span class="hljs-keyword">import</span> sys<br><span class="hljs-keyword">import</span> tkinter.messagebox <span class="hljs-keyword">as</span> messagebox<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">get_file_md5</span>(<span class="hljs-params">file_path</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;计算文件的MD5值&quot;&quot;&quot;</span><br>    md5_hash = hashlib.md5()<br>    <span class="hljs-keyword">try</span>:<br>        <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(file_path, <span class="hljs-string">&#x27;rb&#x27;</span>) <span class="hljs-keyword">as</span> f:<br>            <span class="hljs-keyword">while</span> chunk := f.read(<span class="hljs-number">8192</span>):<br>                md5_hash.update(chunk)<br>        <span class="hljs-keyword">return</span> md5_hash.hexdigest()<br>    <span class="hljs-keyword">except</span> Exception <span class="hljs-keyword">as</span> e:<br>        messagebox.showerror(<span class="hljs-string">&quot;Error&quot;</span>, <span class="hljs-string">f&quot;Error reading file <span class="hljs-subst">&#123;file_path&#125;</span>: <span class="hljs-subst">&#123;e&#125;</span>&quot;</span>)<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">None</span><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">rename_file</span>(<span class="hljs-params">file_path</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;将文件重命名为其MD5值&quot;&quot;&quot;</span><br>    md5_value = get_file_md5(file_path)<br>    <span class="hljs-keyword">if</span> md5_value:<br>        new_name = os.path.join(os.path.dirname(file_path), md5_value + os.path.splitext(file_path)[<span class="hljs-number">1</span>])<br>        <span class="hljs-keyword">try</span>:<br>            os.rename(file_path, new_name)<br>        <span class="hljs-keyword">except</span> Exception <span class="hljs-keyword">as</span> e:<br>            messagebox.showerror(<span class="hljs-string">&quot;Error&quot;</span>, <span class="hljs-string">f&quot;Error renaming file <span class="hljs-subst">&#123;file_path&#125;</span>: <span class="hljs-subst">&#123;e&#125;</span>&quot;</span>)<br>    <span class="hljs-keyword">else</span>:<br>        messagebox.showwarning(<span class="hljs-string">&quot;Warning&quot;</span>, <span class="hljs-string">f&quot;Could not compute MD5 for <span class="hljs-subst">&#123;file_path&#125;</span>&quot;</span>)<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">main</span>():<br>    <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(sys.argv) &lt; <span class="hljs-number">2</span>:<br>        messagebox.showwarning(<span class="hljs-string">&quot;Warning&quot;</span>, <span class="hljs-string">&quot;No files provided!&quot;</span>)<br>        <span class="hljs-keyword">return</span><br><br>    <span class="hljs-keyword">for</span> file_path <span class="hljs-keyword">in</span> sys.argv[<span class="hljs-number">1</span>:]:<br>        file_path = file_path.strip(<span class="hljs-string">&#x27;&quot;&#x27;</span>)<br>        <span class="hljs-keyword">if</span> os.path.isfile(file_path):<br>            rename_file(file_path)<br>        <span class="hljs-keyword">else</span>:<br>            messagebox.showwarning(<span class="hljs-string">&quot;Warning&quot;</span>, <span class="hljs-string">f&quot;<span class="hljs-subst">&#123;file_path&#125;</span> is not a valid file&quot;</span>)<br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:<br>    main()<br></code></pre></td></tr></table></figure>
+
+<h2 id="注册右键菜单"><a href="#注册右键菜单" class="headerlink" title="注册右键菜单"></a>注册右键菜单</h2><ol>
+<li><p>打开注册表</p>
 </li>
-<li><p>配对样本t检验</p>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">scipy.stats.ttest_rel(a, b, axis=<span class="hljs-number">0</span>, nan_policy=<span class="hljs-string">&#x27;propagate&#x27;</span>, alternative=<span class="hljs-string">&quot;two-sided&quot;</span>)<br></code></pre></td></tr></table></figure>
+<li><p>来到<code>计算机\HKEY_CLASSES_ROOT\*\Shell\</code></p>
 </li>
-<li><p>两独立样本t检验</p>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">scipy.stats.ttest_ind(<br>    a, b, axis=<span class="hljs-number">0</span>, equal_var=<span class="hljs-literal">True</span>, nan_policy=<span class="hljs-string">&#x27;propagate&#x27;</span>,permutations=<span class="hljs-literal">None</span>,<br>    random_state=<span class="hljs-literal">None</span>, alternative=<span class="hljs-string">&quot;two-sided&quot;</span>, trim=<span class="hljs-number">0</span><br>)<br></code></pre></td></tr></table></figure>
+<li><p>新建一个项，命名为<code>MD5 Rename</code></p>
 </li>
-<li><p>完全随机设计的方差分析</p>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">scipy.stats.f_oneway(*samples, axis=<span class="hljs-number">0</span>)<br></code></pre></td></tr></table></figure>
+<li><p>在<code>MD5 Rename</code>下再新建一个项，命名为<code>command</code></p>
 </li>
-<li><p>随机区组设计的方差分析<br>  在<code>scipy.stats</code>中似乎未提供可使用的函数，我尝试实现了一下，水平有限且一般使用用不到高维度的数据，所以仅支持1维的数据。</p>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy<br><span class="hljs-keyword">from</span> scipy <span class="hljs-keyword">import</span> special<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">f_twoway</span>(<span class="hljs-params">*samples</span>):<br>    all_data = numpy.asarray(samples)<br>    k, m = all_data.shape<br>    <br>    <span class="hljs-comment"># 计算均值，exp：各处理组，block：各处理组</span><br>    total_avg = all_data.mean()<br>    exp_avgs = all_data.mean(<span class="hljs-number">1</span>)<br>    block_avgs = all_data.mean(<span class="hljs-number">0</span>)<br>    <br>    <span class="hljs-comment"># 计算平方和，err：误差</span><br>    total_ss = numpy.power(all_data - total_avg, <span class="hljs-number">2</span>).<span class="hljs-built_in">sum</span>()<br>    exp_ss = (numpy.power(exp_avgs - total_avg, <span class="hljs-number">2</span>)*m).<span class="hljs-built_in">sum</span>()<br>    block_ss = (numpy.power(block_avgs - total_avg, <span class="hljs-number">2</span>)*k).<span class="hljs-built_in">sum</span>()<br>    err_ss = total_ss - exp_ss - block_ss<br>    <br>    <span class="hljs-comment"># 计算均方</span><br>    exp_ms = exp_ss/(k-<span class="hljs-number">1</span>)<br>    err_ms = err_ss/((k-<span class="hljs-number">1</span>)*(m-<span class="hljs-number">1</span>))<br>    <br>    <span class="hljs-comment"># 计算F值与P值</span><br>    statistic = exp_ms/err_ms<br>    p_value = special.fdtrc(k-<span class="hljs-number">1</span>, (k-<span class="hljs-number">1</span>)*(m-<span class="hljs-number">1</span>), statistic)<br><br>    <span class="hljs-keyword">return</span> statistic, p_value<br></code></pre></td></tr></table></figure>
-</li>
-<li><p>卡方检验</p>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">scipy.stats.chi2_contingency(observed, correction=<span class="hljs-literal">True</span>, lambda_=<span class="hljs-literal">None</span>)<br></code></pre></td></tr></table></figure>
-<p>  <code>observed</code>: 表格</p>
-<table>
-<thead>
-<tr>
-<th align="center"></th>
-<th align="center">state1</th>
-<th align="center">state2</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">group1</td>
-<td align="center">a</td>
-<td align="center">b</td>
-</tr>
-<tr>
-<td align="center">group2</td>
-<td align="center">c</td>
-<td align="center">d</td>
-</tr>
-</tbody></table>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">observed = [<br>    [a, b],<br>    [c, d],<br>]<br></code></pre></td></tr></table></figure>
-</li>
-<li><p>Fisher确切概率法</p>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">scipy.stats.fisher_exact(table, alternative=<span class="hljs-string">&#x27;two-sided&#x27;</span>)<br></code></pre></td></tr></table></figure>
-</li>
-<li><p>配对设计资料的符号秩和检验</p>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">scipy.stats.wilcoxon(<br>    x, y=<span class="hljs-literal">None</span>, zero_method=<span class="hljs-string">&quot;wilcox&quot;</span>, correction=<span class="hljs-literal">False</span>,<br>    alternative=<span class="hljs-string">&quot;two-sided&quot;</span>, method=<span class="hljs-string">&#x27;auto&#x27;</span><br>)<br></code></pre></td></tr></table></figure>
-</li>
-<li><p>两独立样本的符号秩和检验</p>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">scipy.stats.mannwhitneyu(<br>    x, y, use_continuity=<span class="hljs-literal">True</span>, alternative=<span class="hljs-string">&quot;two-sided&quot;</span>,<br>    axis=<span class="hljs-number">0</span>, method=<span class="hljs-string">&quot;auto&quot;</span><br>)<br></code></pre></td></tr></table></figure>
-<p>  该函数返回的是检验统计量$ U $，然而，我们一般更倾向使用统计量$ Z $，其计算公式如下</p>
-<p>  $ z &#x3D; \frac{U-m_{U}}{\sigma_{U}} $</p>
-<p>  其中，$ m_{U} &#x3D; \frac{n_{1}n_{2}}{2}, \sigma_{U}&#x3D;\sqrt{\frac{n_{1} n_{2}\left(n_{1}+n_{2}+1\right)}{12}-\frac{n_{1} n_{2} \sum_{k&#x3D;1}^{K}\left(t_{k}^{3}-t_{k}\right)}{12 n(n-1)}} $</p>
-<p>  其中，$n_{1}, n_{2}$分别为两组样本的样本数，$n &#x3D; n_{1} + n_{2}$。$ t_{k} $指并列第$k$的个数。<br>  当不存在并列的情况时，$\sigma_{U}$可以简化为$\sigma_{U} &#x3D; \sqrt{\frac{n_{1} n_{2}\left(n_{1}+n_{2}+1\right)}{12}}$</p>
-<p>  通过如下代码，即可算出统计量$Z$：</p>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> collections <span class="hljs-keyword">import</span> Counter<br><br>n1 = <span class="hljs-built_in">len</span>(samples1)<br>n2 = <span class="hljs-built_in">len</span>(samples2)<br><br><span class="hljs-comment"># 将两组样本合并，用Counter计算每一个值的个数</span><br>counter = Counter(samples1 + samples2)<br><br><span class="hljs-comment"># 计算与并列相关的那一项</span><br>sigma_ties = <span class="hljs-built_in">sum</span>(<span class="hljs-built_in">map</span>(<span class="hljs-keyword">lambda</span> item: item**<span class="hljs-number">3</span>-item, counter.values()))<br>sigma_ties = (sigma_ties*n1*n2) / (<span class="hljs-number">12</span>*(n1+n2)*(n1+n2-<span class="hljs-number">1</span>))<br>sigma_ties = (n1*n2*(n1+n2+<span class="hljs-number">1</span>)/<span class="hljs-number">12</span> - sigma_ties)**<span class="hljs-number">0.5</span><br><br><span class="hljs-comment"># 计算统计量Z</span><br>z = (statistic - n1*n2*<span class="hljs-number">0.5</span>) / sigma_ties<br></code></pre></td></tr></table></figure>
-</li>
-<li><p>多个独立样本的符合秩和检验</p>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">scipy.stats.kruskal(*samples, nan_policy=<span class="hljs-string">&#x27;propagate&#x27;</span>):<br></code></pre></td></tr></table></figure></li>
-</ul>
+<li><p>双击 <code>command</code> 中的默认值，设置为要执行的命令</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs lsl"><span class="hljs-string">&quot;C:\path<span class="hljs-subst">\t</span>o\pythonw.exe&quot;</span> <span class="hljs-string">&quot;C:\path<span class="hljs-subst">\t</span>o\md5_rename.py&quot;</span> %<span class="hljs-number">1</span><br></code></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="其他事项"><a href="#其他事项" class="headerlink" title="其他事项"></a>其他事项</h2><ol>
+<li>一定要填写完整的python路径，无论是否添加了环境变量</li>
+<li>如果同时选中多个文件，并不会进入for循环</li>
+<li>ChatGPT提供的方法中说， <code>%1</code> 替换为 <code>%*</code>，可以实现批量操作。我尝试后，结果是并不可行</li>
+</ol>
 
                 
               </div>
@@ -368,7 +331,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E7%BC%96%E7%A8%8B/" class="category-chain-item">编程</a>
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/" class="category-chain-item">计算机</a>
   
   
 
@@ -383,7 +346,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E7%BB%9F%E8%AE%A1/" class="print-no-link">#统计</a>
+        <a href="/tags/Windows/" class="print-no-link">#Windows</a>
+      
+        <a href="/tags/%E6%B3%A8%E5%86%8C%E8%A1%A8/" class="print-no-link">#注册表</a>
       
         <a href="/tags/Python/" class="print-no-link">#Python</a>
       
@@ -399,18 +364,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/11/20/%E4%B8%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E4%B8%80%E5%8F%AA%E5%8F%AF%E7%88%B1%E7%9A%84%E7%8C%AB%E7%8C%AB/" title="为博客添加一只可爱的猫猫">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">为博客添加一只可爱的猫猫</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/11/20/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%AD%E6%95%B0%E6%8D%AE%E7%9A%84%E7%AE%80%E5%8D%95%E5%A4%84%E7%90%86/" title="机器学习中数据的简单处理">
-                        <span class="hidden-mobile">机器学习中数据的简单处理</span>
+                      <a href="/2024/11/28/%E5%88%A0%E9%99%A4%E6%89%93%E5%BC%80%E6%96%B9%E5%BC%8F%E4%B8%AD%E7%9A%84%E5%A4%9A%E4%BD%99%E9%A1%B9/" title="删除打开方式中的多余项">
+                        <span class="hidden-mobile">删除打开方式中的多余项</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
