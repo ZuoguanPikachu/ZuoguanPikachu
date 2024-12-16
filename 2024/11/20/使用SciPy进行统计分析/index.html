@@ -19,16 +19,16 @@
   <meta name="author" content="zuoguan">
   <meta name="keywords" content="">
   
-    <meta name="description" content="scipy.stats提供了许多统计检验方法  单样本t检验   1scipy.stats.ttest_1samp(a, popmean, axis&#x3D;0, nan_policy&#x3D;&#x27;propagate&#x27;, alternative&#x3D;&quot;two-sided&quot;)  配对样本t检验   1scipy.stats.ttest_rel(a, b, axis&#x3D;0, nan_p">
+    <meta name="description" content="scipy.stats提供了许多统计检验方法 * 单样本t检验 1scipy.stats.ttest_1samp(a, popmean, axis&#x3D;0, nan_policy&#x3D;&#x27;propagate&#x27;, alternative&#x3D;&quot;two-sided&quot;)  配对样本t检验 1scipy.stats.ttest_rel(a, b, axis&#x3D;0, nan_p">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用SciPy进行统计分析">
 <meta property="og:url" content="https://zuoguan.netlify.app/2024/11/20/%E4%BD%BF%E7%94%A8SciPy%E8%BF%9B%E8%A1%8C%E7%BB%9F%E8%AE%A1%E5%88%86%E6%9E%90/index.html">
 <meta property="og:site_name" content="坐观の小站">
-<meta property="og:description" content="scipy.stats提供了许多统计检验方法  单样本t检验   1scipy.stats.ttest_1samp(a, popmean, axis&#x3D;0, nan_policy&#x3D;&#x27;propagate&#x27;, alternative&#x3D;&quot;two-sided&quot;)  配对样本t检验   1scipy.stats.ttest_rel(a, b, axis&#x3D;0, nan_p">
+<meta property="og:description" content="scipy.stats提供了许多统计检验方法 * 单样本t检验 1scipy.stats.ttest_1samp(a, popmean, axis&#x3D;0, nan_policy&#x3D;&#x27;propagate&#x27;, alternative&#x3D;&quot;two-sided&quot;)  配对样本t检验 1scipy.stats.ttest_rel(a, b, axis&#x3D;0, nan_p">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://zuoguan-piclib-1257172707.cos.ap-guangzhou.myqcloud.com/assets/4.jpg?imageMogr2/thumbnail/700x320%3E">
 <meta property="article:published_time" content="2024-11-20T10:00:31.000Z">
-<meta property="article:modified_time" content="2024-12-15T11:55:18.098Z">
+<meta property="article:modified_time" content="2024-12-16T15:05:52.239Z">
 <meta property="article:author" content="zuoguan">
 <meta property="article:tag" content="统计">
 <meta property="article:tag" content="Python">
@@ -238,7 +238,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          636 字
+          631 字
         
       </span>
     
@@ -291,64 +291,61 @@
             
               <div class="markdown-body">
                 
-                <p><code>scipy.stats</code>提供了许多统计检验方法</p>
+                <p><code>scipy.stats</code>提供了许多统计检验方法 * 单样本t检验
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">scipy.stats.ttest_1samp(a, popmean, axis=<span class="hljs-number">0</span>, nan_policy=<span class="hljs-string">&#x27;propagate&#x27;</span>, alternative=<span class="hljs-string">&quot;two-sided&quot;</span>)<br></code></pre></td></tr></table></figure></p>
 <ul>
-<li><p>单样本t检验</p>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">scipy.stats.ttest_1samp(a, popmean, axis=<span class="hljs-number">0</span>, nan_policy=<span class="hljs-string">&#x27;propagate&#x27;</span>, alternative=<span class="hljs-string">&quot;two-sided&quot;</span>)<br></code></pre></td></tr></table></figure>
-</li>
-<li><p>配对样本t检验</p>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">scipy.stats.ttest_rel(a, b, axis=<span class="hljs-number">0</span>, nan_policy=<span class="hljs-string">&#x27;propagate&#x27;</span>, alternative=<span class="hljs-string">&quot;two-sided&quot;</span>)<br></code></pre></td></tr></table></figure>
-</li>
-<li><p>两独立样本t检验</p>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">scipy.stats.ttest_ind(<br>    a, b, axis=<span class="hljs-number">0</span>, equal_var=<span class="hljs-literal">True</span>, nan_policy=<span class="hljs-string">&#x27;propagate&#x27;</span>,permutations=<span class="hljs-literal">None</span>,<br>    random_state=<span class="hljs-literal">None</span>, alternative=<span class="hljs-string">&quot;two-sided&quot;</span>, trim=<span class="hljs-number">0</span><br>)<br></code></pre></td></tr></table></figure>
-</li>
-<li><p>完全随机设计的方差分析</p>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">scipy.stats.f_oneway(*samples, axis=<span class="hljs-number">0</span>)<br></code></pre></td></tr></table></figure>
-</li>
-<li><p>随机区组设计的方差分析<br>  在<code>scipy.stats</code>中似乎未提供可使用的函数，我尝试实现了一下，水平有限且一般使用用不到高维度的数据，所以仅支持1维的数据。</p>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy<br><span class="hljs-keyword">from</span> scipy <span class="hljs-keyword">import</span> special<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">f_twoway</span>(<span class="hljs-params">*samples</span>):<br>    all_data = numpy.asarray(samples)<br>    k, m = all_data.shape<br>    <br>    <span class="hljs-comment"># 计算均值，exp：各处理组，block：各处理组</span><br>    total_avg = all_data.mean()<br>    exp_avgs = all_data.mean(<span class="hljs-number">1</span>)<br>    block_avgs = all_data.mean(<span class="hljs-number">0</span>)<br>    <br>    <span class="hljs-comment"># 计算平方和，err：误差</span><br>    total_ss = numpy.power(all_data - total_avg, <span class="hljs-number">2</span>).<span class="hljs-built_in">sum</span>()<br>    exp_ss = (numpy.power(exp_avgs - total_avg, <span class="hljs-number">2</span>)*m).<span class="hljs-built_in">sum</span>()<br>    block_ss = (numpy.power(block_avgs - total_avg, <span class="hljs-number">2</span>)*k).<span class="hljs-built_in">sum</span>()<br>    err_ss = total_ss - exp_ss - block_ss<br>    <br>    <span class="hljs-comment"># 计算均方</span><br>    exp_ms = exp_ss/(k-<span class="hljs-number">1</span>)<br>    err_ms = err_ss/((k-<span class="hljs-number">1</span>)*(m-<span class="hljs-number">1</span>))<br>    <br>    <span class="hljs-comment"># 计算F值与P值</span><br>    statistic = exp_ms/err_ms<br>    p_value = special.fdtrc(k-<span class="hljs-number">1</span>, (k-<span class="hljs-number">1</span>)*(m-<span class="hljs-number">1</span>), statistic)<br><br>    <span class="hljs-keyword">return</span> statistic, p_value<br></code></pre></td></tr></table></figure>
-</li>
-<li><p>卡方检验</p>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">scipy.stats.chi2_contingency(observed, correction=<span class="hljs-literal">True</span>, lambda_=<span class="hljs-literal">None</span>)<br></code></pre></td></tr></table></figure>
-<p>  <code>observed</code>: 表格</p>
+<li><p>配对样本t检验 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">scipy.stats.ttest_rel(a, b, axis=<span class="hljs-number">0</span>, nan_policy=<span class="hljs-string">&#x27;propagate&#x27;</span>, alternative=<span class="hljs-string">&quot;two-sided&quot;</span>)<br></code></pre></td></tr></table></figure></p></li>
+<li><p>两独立样本t检验 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">scipy.stats.ttest_ind(<br>    a, b, axis=<span class="hljs-number">0</span>, equal_var=<span class="hljs-literal">True</span>, nan_policy=<span class="hljs-string">&#x27;propagate&#x27;</span>,permutations=<span class="hljs-literal">None</span>,<br>    random_state=<span class="hljs-literal">None</span>, alternative=<span class="hljs-string">&quot;two-sided&quot;</span>, trim=<span class="hljs-number">0</span><br>)<br></code></pre></td></tr></table></figure></p></li>
+<li><p>完全随机设计的方差分析 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">scipy.stats.f_oneway(*samples, axis=<span class="hljs-number">0</span>)<br></code></pre></td></tr></table></figure></p></li>
+<li><p>随机区组设计的方差分析
+在<code>scipy.stats</code>中似乎未提供可使用的函数，我尝试实现了一下，水平有限且一般使用用不到高维度的数据，所以仅支持1维的数据。
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy<br><span class="hljs-keyword">from</span> scipy <span class="hljs-keyword">import</span> special<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">f_twoway</span>(<span class="hljs-params">*samples</span>):<br>    all_data = numpy.asarray(samples)<br>    k, m = all_data.shape<br>    <br>    <span class="hljs-comment"># 计算均值，exp：各处理组，block：各处理组</span><br>    total_avg = all_data.mean()<br>    exp_avgs = all_data.mean(<span class="hljs-number">1</span>)<br>    block_avgs = all_data.mean(<span class="hljs-number">0</span>)<br>    <br>    <span class="hljs-comment"># 计算平方和，err：误差</span><br>    total_ss = numpy.power(all_data - total_avg, <span class="hljs-number">2</span>).<span class="hljs-built_in">sum</span>()<br>    exp_ss = (numpy.power(exp_avgs - total_avg, <span class="hljs-number">2</span>)*m).<span class="hljs-built_in">sum</span>()<br>    block_ss = (numpy.power(block_avgs - total_avg, <span class="hljs-number">2</span>)*k).<span class="hljs-built_in">sum</span>()<br>    err_ss = total_ss - exp_ss - block_ss<br>    <br>    <span class="hljs-comment"># 计算均方</span><br>    exp_ms = exp_ss/(k-<span class="hljs-number">1</span>)<br>    err_ms = err_ss/((k-<span class="hljs-number">1</span>)*(m-<span class="hljs-number">1</span>))<br>    <br>    <span class="hljs-comment"># 计算F值与P值</span><br>    statistic = exp_ms/err_ms<br>    p_value = special.fdtrc(k-<span class="hljs-number">1</span>, (k-<span class="hljs-number">1</span>)*(m-<span class="hljs-number">1</span>), statistic)<br><br>    <span class="hljs-keyword">return</span> statistic, p_value<br></code></pre></td></tr></table></figure></p></li>
+<li><p>卡方检验 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">scipy.stats.chi2_contingency(observed, correction=<span class="hljs-literal">True</span>, lambda_=<span class="hljs-literal">None</span>)<br></code></pre></td></tr></table></figure> <code>observed</code>: 表格</p>
 <table>
 <thead>
 <tr>
-<th align="center"></th>
-<th align="center">state1</th>
-<th align="center">state2</th>
+<th style="text-align: center;"></th>
+<th style="text-align: center;">state1</th>
+<th style="text-align: center;">state2</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">group1</td>
-<td align="center">a</td>
-<td align="center">b</td>
+<tbody>
+<tr>
+<td style="text-align: center;">group1</td>
+<td style="text-align: center;">a</td>
+<td style="text-align: center;">b</td>
 </tr>
 <tr>
-<td align="center">group2</td>
-<td align="center">c</td>
-<td align="center">d</td>
+<td style="text-align: center;">group2</td>
+<td style="text-align: center;">c</td>
+<td style="text-align: center;">d</td>
 </tr>
-</tbody></table>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">observed = [<br>    [a, b],<br>    [c, d],<br>]<br></code></pre></td></tr></table></figure>
-</li>
-<li><p>Fisher确切概率法</p>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">scipy.stats.fisher_exact(table, alternative=<span class="hljs-string">&#x27;two-sided&#x27;</span>)<br></code></pre></td></tr></table></figure>
-</li>
-<li><p>配对设计资料的符号秩和检验</p>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">scipy.stats.wilcoxon(<br>    x, y=<span class="hljs-literal">None</span>, zero_method=<span class="hljs-string">&quot;wilcox&quot;</span>, correction=<span class="hljs-literal">False</span>,<br>    alternative=<span class="hljs-string">&quot;two-sided&quot;</span>, method=<span class="hljs-string">&#x27;auto&#x27;</span><br>)<br></code></pre></td></tr></table></figure>
-</li>
-<li><p>两独立样本的符号秩和检验</p>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">scipy.stats.mannwhitneyu(<br>    x, y, use_continuity=<span class="hljs-literal">True</span>, alternative=<span class="hljs-string">&quot;two-sided&quot;</span>,<br>    axis=<span class="hljs-number">0</span>, method=<span class="hljs-string">&quot;auto&quot;</span><br>)<br></code></pre></td></tr></table></figure>
-<p>  该函数返回的是检验统计量$ U $，然而，我们一般更倾向使用统计量$ Z $，其计算公式如下</p>
-<p>  $ z &#x3D; \frac{U-m_{U}}{\sigma_{U}} $</p>
-<p>  其中，$ m_{U} &#x3D; \frac{n_{1}n_{2}}{2}, \sigma_{U}&#x3D;\sqrt{\frac{n_{1} n_{2}\left(n_{1}+n_{2}+1\right)}{12}-\frac{n_{1} n_{2} \sum_{k&#x3D;1}^{K}\left(t_{k}^{3}-t_{k}\right)}{12 n(n-1)}} $</p>
-<p>  其中，$n_{1}, n_{2}$分别为两组样本的样本数，$n &#x3D; n_{1} + n_{2}$。$ t_{k} $指并列第$k$的个数。<br>  当不存在并列的情况时，$\sigma_{U}$可以简化为$\sigma_{U} &#x3D; \sqrt{\frac{n_{1} n_{2}\left(n_{1}+n_{2}+1\right)}{12}}$</p>
-<p>  通过如下代码，即可算出统计量$Z$：</p>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> collections <span class="hljs-keyword">import</span> Counter<br><br>n1 = <span class="hljs-built_in">len</span>(samples1)<br>n2 = <span class="hljs-built_in">len</span>(samples2)<br><br><span class="hljs-comment"># 将两组样本合并，用Counter计算每一个值的个数</span><br>counter = Counter(samples1 + samples2)<br><br><span class="hljs-comment"># 计算与并列相关的那一项</span><br>sigma_ties = <span class="hljs-built_in">sum</span>(<span class="hljs-built_in">map</span>(<span class="hljs-keyword">lambda</span> item: item**<span class="hljs-number">3</span>-item, counter.values()))<br>sigma_ties = (sigma_ties*n1*n2) / (<span class="hljs-number">12</span>*(n1+n2)*(n1+n2-<span class="hljs-number">1</span>))<br>sigma_ties = (n1*n2*(n1+n2+<span class="hljs-number">1</span>)/<span class="hljs-number">12</span> - sigma_ties)**<span class="hljs-number">0.5</span><br><br><span class="hljs-comment"># 计算统计量Z</span><br>z = (statistic - n1*n2*<span class="hljs-number">0.5</span>) / sigma_ties<br></code></pre></td></tr></table></figure>
-</li>
-<li><p>多个独立样本的符合秩和检验</p>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">scipy.stats.kruskal(*samples, nan_policy=<span class="hljs-string">&#x27;propagate&#x27;</span>):<br></code></pre></td></tr></table></figure></li>
+</tbody>
+</table>
+<p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">observed = [<br>    [a, b],<br>    [c, d],<br>]<br></code></pre></td></tr></table></figure></p></li>
+<li><p>Fisher确切概率法 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">scipy.stats.fisher_exact(table, alternative=<span class="hljs-string">&#x27;two-sided&#x27;</span>)<br></code></pre></td></tr></table></figure></p></li>
+<li><p>配对设计资料的符号秩和检验 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">scipy.stats.wilcoxon(<br>    x, y=<span class="hljs-literal">None</span>, zero_method=<span class="hljs-string">&quot;wilcox&quot;</span>, correction=<span class="hljs-literal">False</span>,<br>    alternative=<span class="hljs-string">&quot;two-sided&quot;</span>, method=<span class="hljs-string">&#x27;auto&#x27;</span><br>)<br></code></pre></td></tr></table></figure></p></li>
+<li><p>两独立样本的符号秩和检验 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">scipy.stats.mannwhitneyu(<br>    x, y, use_continuity=<span class="hljs-literal">True</span>, alternative=<span class="hljs-string">&quot;two-sided&quot;</span>,<br>    axis=<span class="hljs-number">0</span>, method=<span class="hljs-string">&quot;auto&quot;</span><br>)<br></code></pre></td></tr></table></figure>
+该函数返回的是检验统计量<span
+class="math inline">\(U\)</span>，然而，我们一般更倾向使用统计量<span
+class="math inline">\(Z\)</span>，其计算公式如下</p>
+<p><span class="math display">\[z =
+\frac{U-m_{U}}{\sigma_{U}}\]</span></p>
+<p>其中，<span class="math inline">\(m_{U} = \frac{n_{1}n_{2}}{2},
+\sigma_{U}=\sqrt{\frac{n_{1}
+n_{2}\left(n_{1}+n_{2}+1\right)}{12}-\frac{n_{1} n_{2}
+\sum_{k=1}^{K}\left(t_{k}^{3}-t_{k}\right)}{12 n(n-1)}}\)</span></p>
+<p>其中，<span class="math inline">\(n_{1},
+n_{2}\)</span>分别为两组样本的样本数，<span class="math inline">\(n =
+n_{1} + n_{2}\)</span>。<span
+class="math inline">\(t_{k}\)</span>指并列第<span
+class="math inline">\(k\)</span>的个数。 当不存在并列的情况时，<span
+class="math inline">\(\sigma_{U}\)</span>可以简化为<span
+class="math inline">\(\sigma_{U} = \sqrt{\frac{n_{1}
+n_{2}\left(n_{1}+n_{2}+1\right)}{12}}\)</span></p>
+<p>通过如下代码，即可算出统计量<span class="math inline">\(Z\)</span>：
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> collections <span class="hljs-keyword">import</span> Counter<br><br>n1 = <span class="hljs-built_in">len</span>(samples1)<br>n2 = <span class="hljs-built_in">len</span>(samples2)<br><br><span class="hljs-comment"># 将两组样本合并，用Counter计算每一个值的个数</span><br>counter = Counter(samples1 + samples2)<br><br><span class="hljs-comment"># 计算与并列相关的那一项</span><br>sigma_ties = <span class="hljs-built_in">sum</span>(<span class="hljs-built_in">map</span>(<span class="hljs-keyword">lambda</span> item: item**<span class="hljs-number">3</span>-item, counter.values()))<br>sigma_ties = (sigma_ties*n1*n2) / (<span class="hljs-number">12</span>*(n1+n2)*(n1+n2-<span class="hljs-number">1</span>))<br>sigma_ties = (n1*n2*(n1+n2+<span class="hljs-number">1</span>)/<span class="hljs-number">12</span> - sigma_ties)**<span class="hljs-number">0.5</span><br><br><span class="hljs-comment"># 计算统计量Z</span><br>z = (statistic - n1*n2*<span class="hljs-number">0.5</span>) / sigma_ties<br></code></pre></td></tr></table></figure></p></li>
+<li><p>多个独立样本的符合秩和检验 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">scipy.stats.kruskal(*samples, nan_policy=<span class="hljs-string">&#x27;propagate&#x27;</span>):<br></code></pre></td></tr></table></figure></p></li>
 </ul>
 
                 
@@ -467,6 +464,12 @@
 
 
   
+
+
+  
+  
+
+
 
 
 
@@ -659,6 +662,49 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
 

@@ -19,20 +19,20 @@
   <meta name="author" content="zuoguan">
   <meta name="keywords" content="">
   
-    <meta name="description" content="有的时候，希望能够爬取一些外网的数据，但是开启Clash之类的软件后，发现会直接报requests.exceptions.ProxyError的错误。解决方法的代码如下： 12345678910111213141516import requestsimport urllib3# 设置了verify&#x3D;False后(在后面)会有警告，关闭警告urllib3.disable_warnings()url">
+    <meta name="description" content="有的时候，希望能够爬取一些外网的数据，但是开启Clash之类的软件后，发现会直接报requests.exceptions.ProxyError的错误。解决方法的代码如下： 12345678910111213141516import requestsimport urllib3# 设置了verify&#x3D;False后(在后面)会有警告，关闭警告urllib3.disable_warnings()url">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用 Python + Clash，爬取外网数据">
 <meta property="og:url" content="https://zuoguan.netlify.app/2024/11/20/%E4%BD%BF%E7%94%A8-Python-Clash%EF%BC%8C%E7%88%AC%E5%8F%96%E5%A4%96%E7%BD%91%E6%95%B0%E6%8D%AE/index.html">
 <meta property="og:site_name" content="坐观の小站">
-<meta property="og:description" content="有的时候，希望能够爬取一些外网的数据，但是开启Clash之类的软件后，发现会直接报requests.exceptions.ProxyError的错误。解决方法的代码如下： 12345678910111213141516import requestsimport urllib3# 设置了verify&#x3D;False后(在后面)会有警告，关闭警告urllib3.disable_warnings()url">
+<meta property="og:description" content="有的时候，希望能够爬取一些外网的数据，但是开启Clash之类的软件后，发现会直接报requests.exceptions.ProxyError的错误。解决方法的代码如下： 12345678910111213141516import requestsimport urllib3# 设置了verify&#x3D;False后(在后面)会有警告，关闭警告urllib3.disable_warnings()url">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://zuoguan-piclib-1257172707.cos.ap-guangzhou.myqcloud.com/assets/2.jpg?imageMogr2/thumbnail/700x320%3E">
 <meta property="article:published_time" content="2024-11-20T09:39:34.000Z">
 <meta property="article:modified_time" content="2024-12-15T11:55:02.002Z">
 <meta property="article:author" content="zuoguan">
-<meta property="article:tag" content="代理">
-<meta property="article:tag" content="爬虫">
 <meta property="article:tag" content="Python">
+<meta property="article:tag" content="爬虫">
+<meta property="article:tag" content="代理">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://zuoguan-piclib-1257172707.cos.ap-guangzhou.myqcloud.com/assets/2.jpg?imageMogr2/thumbnail/700x320%3E">
   
@@ -292,15 +292,14 @@
             
               <div class="markdown-body">
                 
-                <p>有的时候，希望能够爬取一些外网的数据，但是开启<code>Clash</code>之类的软件后，发现会直接报<code>requests.exceptions.ProxyError</code>的错误。解决方法的代码如下：</p>
+                <p>有的时候，希望能够爬取一些外网的数据，但是开启<code>Clash</code>之类的软件后，发现会直接报<code>requests.exceptions.ProxyError</code>的错误。解决方法的代码如下：
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> requests<br><span class="hljs-keyword">import</span> urllib3<br><br><br><span class="hljs-comment"># 设置了verify=False后(在后面)会有警告，关闭警告</span><br>urllib3.disable_warnings()<br><br>url = <span class="hljs-string">&quot;https://www.google.com&quot;</span><br><br><span class="hljs-comment"># Clash默认的代理端口为7890</span><br>proxies = &#123;<br>    <span class="hljs-string">&#x27;http&#x27;</span>: <span class="hljs-string">&#x27;http://127.0.0.1:7890/&#x27;</span>,<br>    <span class="hljs-string">&#x27;https&#x27;</span>: <span class="hljs-string">&#x27;http://127.0.0.1:7890/&#x27;</span><br>&#125;<br><br>response = requests.get(url=url, verify=<span class="hljs-literal">False</span>, proxies=proxies)<br></code></pre></td></tr></table></figure>
-<p>将代理的IP地址以及端口号写死的做法并不优雅，可以使用<code>urllib.request</code>中的<code>getproxies</code>获取系统Web代理信息。当未开启代理时，返回空字典，开启代理时，返回如下的字典：</p>
+将代理的IP地址以及端口号写死的做法并不优雅，可以使用<code>urllib.request</code>中的<code>getproxies</code>获取系统Web代理信息。当未开启代理时，返回空字典，开启代理时，返回如下的字典：
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>    &#x27;http&#x27;<span class="hljs-punctuation">:</span> &#x27;http<span class="hljs-punctuation">:</span><span class="hljs-comment">//127.0.0.1:7890&#x27;,</span><br> 	&#x27;https&#x27;<span class="hljs-punctuation">:</span> &#x27;https<span class="hljs-punctuation">:</span><span class="hljs-comment">//127.0.0.1:7890&#x27;,</span><br> 	&#x27;ftp&#x27;<span class="hljs-punctuation">:</span> &#x27;ftp<span class="hljs-punctuation">:</span><span class="hljs-comment">//127.0.0.1:7890&#x27;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
-<p><code>urllib3.disable_warnings()</code>这样的代码也不够优雅。使用<code>httpx</code>则不用设置<code>urllib3.disable_warnings()</code>、<code>verify=False</code>。</p>
+<code>urllib3.disable_warnings()</code>这样的代码也不够优雅。使用<code>httpx</code>则不用设置<code>urllib3.disable_warnings()</code>、<code>verify=False</code>。
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> urllib.request <span class="hljs-keyword">import</span> getproxies<br><span class="hljs-keyword">import</span> httpx<br><br><br>response = httpx.get(<br>	<span class="hljs-string">&quot;https://www.google.com/&quot;</span>,<br>    proxy=getproxies().get(<span class="hljs-string">&quot;http&quot;</span>)<br>)<br></code></pre></td></tr></table></figure>
-<p>也可以使用<code>Client</code>，和<code>requests</code>的<code>session</code>基本一致</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> urllib.request <span class="hljs-keyword">import</span> getproxies<br><span class="hljs-keyword">import</span> httpx<br><br><br>client = httpx.Client(<br>    proxy=getproxies().get(<span class="hljs-string">&quot;http&quot;</span>)<br>)<br><br>response = client.get(<span class="hljs-string">&quot;https://www.google.com/&quot;</span>)<br></code></pre></td></tr></table></figure>
-
+也可以使用<code>Client</code>，和<code>requests</code>的<code>session</code>基本一致
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> urllib.request <span class="hljs-keyword">import</span> getproxies<br><span class="hljs-keyword">import</span> httpx<br><br><br>client = httpx.Client(<br>    proxy=getproxies().get(<span class="hljs-string">&quot;http&quot;</span>)<br>)<br><br>response = client.get(<span class="hljs-string">&quot;https://www.google.com/&quot;</span>)<br></code></pre></td></tr></table></figure></p>
 
                 
               </div>
@@ -334,11 +333,11 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E4%BB%A3%E7%90%86/" class="print-no-link">#代理</a>
+        <a href="/tags/Python/" class="print-no-link">#Python</a>
       
         <a href="/tags/%E7%88%AC%E8%99%AB/" class="print-no-link">#爬虫</a>
       
-        <a href="/tags/Python/" class="print-no-link">#Python</a>
+        <a href="/tags/%E4%BB%A3%E7%90%86/" class="print-no-link">#代理</a>
       
     </div>
   

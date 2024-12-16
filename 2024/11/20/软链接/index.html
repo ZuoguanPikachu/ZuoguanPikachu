@@ -19,12 +19,12 @@
   <meta name="author" content="zuoguan">
   <meta name="keywords" content="">
   
-    <meta name="description" content="第一次了解到软链接，是在这个视频：黑科技？你不知道的一种快捷方式，没有空间占用。在这种快捷方式面前，普通的快捷方式都是弟弟。 最近，电脑的C盘又红了，就想着把一些大文件移到D盘，然后再用软链接映射回C盘原本的位置。但是PowerShell里没有mklink这个命令，需要用New-Item，遂记录一下。 现在我将C:\Users\zuoguan\.nuget剪切至D:\.nuget 创建软链接： 1">
+    <meta name="description" content="第一次了解到软链接，是在这个视频：黑科技？你不知道的一种快捷方式，没有空间占用。在这种快捷方式面前，普通的快捷方式都是弟弟。 最近，电脑的C盘又红了，就想着把一些大文件移到D盘，然后再用软链接映射回C盘原本的位置。但是PowerShell里没有mklink这个命令，需要用New-Item，遂记录一下。 现在我将C:\Users\zuoguan\.nuget剪切至D:\.nuget 创建软链接">
 <meta property="og:type" content="article">
 <meta property="og:title" content="软链接">
 <meta property="og:url" content="https://zuoguan.netlify.app/2024/11/20/%E8%BD%AF%E9%93%BE%E6%8E%A5/index.html">
 <meta property="og:site_name" content="坐观の小站">
-<meta property="og:description" content="第一次了解到软链接，是在这个视频：黑科技？你不知道的一种快捷方式，没有空间占用。在这种快捷方式面前，普通的快捷方式都是弟弟。 最近，电脑的C盘又红了，就想着把一些大文件移到D盘，然后再用软链接映射回C盘原本的位置。但是PowerShell里没有mklink这个命令，需要用New-Item，遂记录一下。 现在我将C:\Users\zuoguan\.nuget剪切至D:\.nuget 创建软链接： 1">
+<meta property="og:description" content="第一次了解到软链接，是在这个视频：黑科技？你不知道的一种快捷方式，没有空间占用。在这种快捷方式面前，普通的快捷方式都是弟弟。 最近，电脑的C盘又红了，就想着把一些大文件移到D盘，然后再用软链接映射回C盘原本的位置。但是PowerShell里没有mklink这个命令，需要用New-Item，遂记录一下。 现在我将C:\Users\zuoguan\.nuget剪切至D:\.nuget 创建软链接">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://zuoguan-piclib-1257172707.cos.ap-guangzhou.myqcloud.com/assets/8.jpg?imageMogr2/thumbnail/700x320%3E">
 <meta property="article:published_time" content="2024-11-20T11:21:33.000Z">
@@ -290,11 +290,13 @@
             
               <div class="markdown-body">
                 
-                <p>第一次了解到软链接，是在这个视频：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Ct411P7ma/">黑科技？你不知道的一种快捷方式，没有空间占用。在这种快捷方式面前，普通的快捷方式都是弟弟</a>。</p>
+                <p>第一次了解到软链接，是在这个视频：<a
+target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Ct411P7ma/">黑科技？你不知道的一种快捷方式，没有空间占用。在这种快捷方式面前，普通的快捷方式都是弟弟</a>。</p>
 <p>最近，电脑的C盘又红了，就想着把一些大文件移到D盘，然后再用软链接映射回C盘原本的位置。但是PowerShell里没有mklink这个命令，需要用<code>New-Item</code>，遂记录一下。</p>
 <p>现在我将<code>C:\Users\zuoguan\.nuget</code>剪切至<code>D:\.nuget</code></p>
 <p>创建软链接：</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-built_in">New-Item</span> <span class="hljs-literal">-ItemType</span> SymbolicLink <span class="hljs-literal">-Path</span> <span class="hljs-string">&quot;C:\Users\zuoguan\.nuget&quot;</span> <span class="hljs-literal">-Target</span> <span class="hljs-string">&quot;D:\.nuget&quot;</span><br></code></pre></td></tr></table></figure>
+
                 
               </div>
             
