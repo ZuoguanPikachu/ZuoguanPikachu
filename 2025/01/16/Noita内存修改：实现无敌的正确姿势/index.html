@@ -1,0 +1,651 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://zuoguan-piclib-1257172707.cos.ap-guangzhou.myqcloud.com/assets/cat.jpg">
+  <link rel="icon" href="https://zuoguan-piclib-1257172707.cos.ap-guangzhou.myqcloud.com/assets/cat.jpg">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="zuoguan">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="当初买Noita的时候，是它的法杖编程吸引了我。但是当我实际上手后，发现手残的我根本玩不到后期，体验不到法杖编程的乐趣。CE学有所成后，我决定对Noita下手了。 看不懂的汇编代码？ 在一开始找血量的地址遇到了一点小小的波折，Noita中血量的数据类型是Float，并且100血时2.25，0血时是1.75。 然后查看汇编代码时，我傻眼了 123456789101112noita.exe+6">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Noita内存修改：实现无敌的正确姿势">
+<meta property="og:url" content="https://zuoguan.netlify.app/2025/01/16/Noita%E5%86%85%E5%AD%98%E4%BF%AE%E6%94%B9%EF%BC%9A%E5%AE%9E%E7%8E%B0%E6%97%A0%E6%95%8C%E7%9A%84%E6%AD%A3%E7%A1%AE%E5%A7%BF%E5%8A%BF/index.html">
+<meta property="og:site_name" content="坐观の小站">
+<meta property="og:description" content="当初买Noita的时候，是它的法杖编程吸引了我。但是当我实际上手后，发现手残的我根本玩不到后期，体验不到法杖编程的乐趣。CE学有所成后，我决定对Noita下手了。 看不懂的汇编代码？ 在一开始找血量的地址遇到了一点小小的波折，Noita中血量的数据类型是Float，并且100血时2.25，0血时是1.75。 然后查看汇编代码时，我傻眼了 123456789101112noita.exe+6">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zuoguan-piclib-1257172707.cos.ap-guangzhou.myqcloud.com/assets/16.jpg?imageMogr2/thumbnail/700x320%3E">
+<meta property="article:published_time" content="2025-01-16T01:29:07.000Z">
+<meta property="article:modified_time" content="2025-01-16T03:34:47.861Z">
+<meta property="article:author" content="zuoguan">
+<meta property="article:tag" content="内存修改">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://zuoguan-piclib-1257172707.cos.ap-guangzhou.myqcloud.com/assets/16.jpg?imageMogr2/thumbnail/700x320%3E">
+  
+  
+  
+  <title>Noita内存修改：实现无敌的正确姿势 - 坐观の小站</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zuoguan.netlify.app","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>坐观の小站</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://zuoguan-piclib-1257172707.cos.ap-guangzhou.myqcloud.com/assets/16.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Noita内存修改：实现无敌的正确姿势"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-01-16 09:29" pubdate>
+          2025年1月16日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          9 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Noita内存修改：实现无敌的正确姿势</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>当初买Noita的时候，是它的法杖编程吸引了我。但是当我实际上手后，发现手残的我根本玩不到后期，体验不到法杖编程的乐趣。CE学有所成后，我决定对Noita下手了。</p>
+<h2 id="看不懂的汇编代码">看不懂的汇编代码？</h2>
+<p>在一开始找血量的地址遇到了一点小小的波折，Noita中血量的数据类型是<code>Float</code>，并且100血时2.25，0血时是1.75。</p>
+<p>然后查看汇编代码时，我傻眼了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs assembly">noita.exe+6B961C: F3 0F 10 44 24 18        - movss xmm0,[esp+18]<br>noita.exe+6B9622: F2 0F 10 4E 48           - movsd xmm1,[esi+48]<br>noita.exe+6B9627: 0F 5A C0                 - cvtps2pd xmm0,xmm0<br>noita.exe+6B962A: F2 0F 5C C8              - subsd xmm1,xmm0<br>noita.exe+6B962E: F2 0F 11 4E 48           - movsd [esi+48],xmm1<br>noita.exe+6B9633: F2 0F 10 46 48           - movsd xmm0,[esi+48]<br>noita.exe+6B9638: F2 0F 10 4E 50           - movsd xmm1,[esi+50]<br>noita.exe+6B963D: 66 0F 2F C8              - comisd xmm1,xmm0<br>noita.exe+6B9641: 77 03                    - ja noita.exe+6B9646<br>noita.exe+6B9643: 0F 28 C1                 - movaps xmm0,xmm1<br>noita.exe+6B9646: 0F 57 C9                 - xorps xmm1,xmm1<br>noita.exe+6B9649: F2 0F 11 46 48           - movsd [esi+48],xmm0<br></code></pre></td></tr></table></figure>
+<p>好在有ChatGPT，我让它帮我猜测这些代码是做什么的。后续实验证明，它猜得很准。</p>
+<p><code>[esp+18]</code>是伤害量、<code>[esi+48]</code>是血量。<code>cvtps2pd</code>是将<code>Float</code>转换为<code>Double</code>。接下来2行就是血量变动了。<code>[esi+50]</code>是血量上限，血量变动后与血量上限进行比较，如果血量超过上限，就将血量设置为上限值。</p>
+<p>既然知道血量和血量上限的地址，直接赋值不久好了。</p>
+<ol type="1">
+<li><p><del>法1：</del><code>noita.exe+6B9649: movsd [esi+48],xmm0</code>
+-&gt; <code>movsd [esi+48],[esi+50]</code></p>
+<p>不可行！在 x86 和 x86-64 汇编中，<code>movsd</code>
+指令的操作数规则是严格的，不允许两个操作数都直接是内存地址。它的语法只允许以下形式：</p>
+<ul>
+<li>从内存到寄存器：<code>movsd xmm, [mem]</code></li>
+<li>从寄存器到内存：<code>movsd [mem], xmm</code></li>
+<li>从寄存器到寄存器：<code>movsd xmm, xmm</code></li>
+</ul></li>
+<li><p><del>法2：</del><code>noita.exe+6B9646: xorps xmm1,xmm1</code>
+-&gt;
+<code>nop</code>；<code>noita.exe+6B9649: movsd [esi+48],xmm1</code></p>
+<p><code>xorps xmm1,xmm1</code>是将<code>xmm1</code>清零。我们不然它清理，然后赋值给<code>[esi+48]</code>。</p>
+<p>可惜，这也是不可行的，<code>xmm1</code>须要清零，这可能跟后续代码有关，没有细究。</p></li>
+<li><p>法3：调换顺序，先<code>movsd [esi+48],xmm1</code>，后<code>xorps xmm1,xmm1</code></p>
+<p>锁血成功了。</p></li>
+</ol>
+<h2 id="杀不死的怪物意外的死亡">杀不死的怪物、意外的死亡</h2>
+<p>其实在教学视频里例子，就是敌人、友军、玩家是共用血量变动的代码的。并且，调试过程中，玩家血量没受到伤害，却触发了断点；怪物很难杀死，都提示了我，血量变动的代码是共用的。然而，我依旧没意识到，原因是，小蜘蛛可以一下秒杀，其他一些怪，暴击的时候也可以杀死。有怪物可以被杀死，我就误以为不是Shared
+Code。直到我不知怎么回事，收到一条游戏信息说"你触怒了神明"，出现了圣山守卫，并且将我击杀了。</p>
+<p>结合代码，我猜测是在<code>noita.exe+6B962E: movsd [esi+48],xmm1</code>的时候，血量小于0了，然后就死了。而之前能杀死怪，也是因为伤害超过了血量，在这一行代码时就死了。随后的实验也证明了我的猜测是对的。</p>
+<h2 id="奇怪的地址">奇怪的地址</h2>
+<p>处理这种情况，是需要找基址的。在这个案例中，血量的基址与偏移是这样的：</p>
+<p><img
+src="https://zuoguan-piclib-1257172707.cos.ap-guangzhou.myqcloud.com/Noita%E5%86%85%E5%AD%98%E4%BF%AE%E6%94%B9%EF%BC%9A%E5%AE%9E%E7%8E%B0%E6%97%A0%E6%95%8C%E7%9A%84%E6%AD%A3%E7%A1%AE%E5%A7%BF%E5%8A%BF/image-20250116110010774.png" srcset="/img/loading.gif" lazyload /></p>
+<p>我们只要将<code>esi</code>与<code>[[[[[noita.exe+e02b78]+2c]+7c]+40]+0]</code>比较，如果相等，此时变动的就是玩家的血量。</p>
+<p>然而，非常奇怪的一点，只有在游戏里选择新游戏，倒数第2个偏移才是0。在首页选择继续或者是新游戏，倒是第2个偏移是不固定的，个人推测是<code>0xa</code>到<code>0x6a</code>之间的一个数×4。</p>
+<p>我的做法是，尝试<code>0xa</code>到<code>0x6a</code>之间的每一种可能，获取<code>[[[[[[noita.exe+e02b78]+2c]+7c]+40]+offset]+48]</code>的值，除去获取不到值的、值重复的，剩下的结果中选择第1个。这是根据我观察得来的，准确率还是比较高的，目前是百发百中。</p>
+<h2 id="未知">未知</h2>
+<p>实验发现，有的时候会突然就没有锁血了，重新进行注入后，又能继续锁血了，目前还不清楚具体原因。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BC%96%E7%A8%8B/" class="category-chain-item">编程</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%86%85%E5%AD%98%E4%BF%AE%E6%94%B9/" class="print-no-link">#内存修改</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/12/30/CE%E3%80%81AOB%E6%B3%A8%E5%85%A5%E4%BB%A5%E5%8F%8A%E4%B8%80%E4%BA%9B%E7%A2%8E%E7%A2%8E%E5%BF%B5/" title="CE、AOB注入以及一些碎碎念">
+                        <span class="hidden-mobile">CE、AOB注入以及一些碎碎念</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
