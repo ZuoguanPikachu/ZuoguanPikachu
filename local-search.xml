@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>Noita内存修改：实现无敌的漫漫长路</title>
+    <link href="/2025/01/23/Noita%E5%86%85%E5%AD%98%E4%BF%AE%E6%94%B9%EF%BC%9A%E5%AE%9E%E7%8E%B0%E6%97%A0%E6%95%8C%E7%9A%84%E6%BC%AB%E6%BC%AB%E9%95%BF%E8%B7%AF/"/>
+    <url>/2025/01/23/Noita%E5%86%85%E5%AD%98%E4%BF%AE%E6%94%B9%EF%BC%9A%E5%AE%9E%E7%8E%B0%E6%97%A0%E6%95%8C%E7%9A%84%E6%BC%AB%E6%BC%AB%E9%95%BF%E8%B7%AF/</url>
+    
+    <content type="html"><![CDATA[<p>几天前，我原以为我已经较完美地实现了Noita中的锁血，然而现实又给了我当头一棒。</p><p>在Noita中，一些怪物，如：大眼、变形魔，可以将玩家变形。而被变形后，玩家血量地址会发生改变，依旧是诡计多端的倒数第2个偏移，它会发生改变。当变形结束后，血量地址会再变一次。</p><p>实验证明，上一篇文章中猜倒数第2个偏移的方法是不正确的，尤其是变形后的情况。</p><p>于是，我不断地调试，以及查看更多的CE教程，期望能找到一个完美的解法。可惜求而不得。目前有一个能准确找到倒数第2个偏移，但是使用时略显麻烦的方法。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs assembly">noita.exe+4C8056: 8B 45 08  - mov eax,[ebp+08]<br></code></pre></td></tr></table></figure><p>此时的<code>eax</code>×4，就是倒数第2个偏移，但不只是玩家的，还可能是怪物的。但是在游戏暂停时，这行代码依旧会被执行，并且，此时的<code>eax</code>×4，只会是玩家血量的倒数第2个偏移，这就给了我们操作的机会。</p><p>大致思路：在此处注入代码，将<code>eax</code>的值写入到一块临时的内存中。等待0.1秒，读取临时内存中的数据。接着就是取消注入、释放内存、AOB注入。</p><p>当被变形时就重新获取偏移、重新注入；变形结束又执行一次。略显麻烦了，但却是目前最优解了。</p><hr /><p>题外话</p><p>在Noita中，就算完美实现了锁血，也还有目盲、麻痹、禁止施法等负面状态，虽不致死，但会让你深刻认识到自己不是神明，不是完全无敌。实现这样的完全无敌，是一条漫漫长路。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>编程</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>内存修改</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Noita内存修改：实现无敌的正确姿势</title>
     <link href="/2025/01/16/Noita%E5%86%85%E5%AD%98%E4%BF%AE%E6%94%B9%EF%BC%9A%E5%AE%9E%E7%8E%B0%E6%97%A0%E6%95%8C%E7%9A%84%E6%AD%A3%E7%A1%AE%E5%A7%BF%E5%8A%BF/"/>
     <url>/2025/01/16/Noita%E5%86%85%E5%AD%98%E4%BF%AE%E6%94%B9%EF%BC%9A%E5%AE%9E%E7%8E%B0%E6%97%A0%E6%95%8C%E7%9A%84%E6%AD%A3%E7%A1%AE%E5%A7%BF%E5%8A%BF/</url>
