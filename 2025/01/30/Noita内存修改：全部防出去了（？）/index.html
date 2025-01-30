@@ -19,24 +19,24 @@
   <meta name="author" content="zuoguan">
   <meta name="keywords" content="">
   
-    <meta name="description" content="几天前，我原以为我已经较完美地实现了Noita中的锁血，然而现实又给了我当头一棒。 在Noita中，一些怪物，如：大眼、变形魔，可以将玩家变形。而被变形后，玩家血量地址会发生改变，依旧是诡计多端的倒数第2个偏移，它会发生改变。当变形结束后，血量地址会再变一次。 实验证明，上一篇文章中猜倒数第2个偏移的方法是不正确的，尤其是变形后的情况。 于是，我不断地调试，以及查看更多的CE教程，期望能找到">
+    <meta name="description" content="因为对上一个版本的解决方案并不满意，在重构完代码后，我又继续对Noita进行分析。 首先，打了一个能生成任意物品的MOD，用于生成变形魔药，方便我进行分析。对血量下面1、2级地址进行查找访问、写入，筛选出了如下代码片段： 1noita.exe+4E4173: 89 0C 98              - mov [eax+ebx*4],ecx 这行代码，个人推测是和新生成物品相关的。而变形">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Noita内存修改：实现无敌的漫漫长路">
-<meta property="og:url" content="https://zuoguan.netlify.app/2025/01/23/Noita%E5%86%85%E5%AD%98%E4%BF%AE%E6%94%B9%EF%BC%9A%E5%AE%9E%E7%8E%B0%E6%97%A0%E6%95%8C%E7%9A%84%E6%BC%AB%E6%BC%AB%E9%95%BF%E8%B7%AF/index.html">
+<meta property="og:title" content="Noita内存修改：全部防出去了（？）">
+<meta property="og:url" content="https://zuoguan.netlify.app/2025/01/30/Noita%E5%86%85%E5%AD%98%E4%BF%AE%E6%94%B9%EF%BC%9A%E5%85%A8%E9%83%A8%E9%98%B2%E5%87%BA%E5%8E%BB%E4%BA%86%EF%BC%88%EF%BC%9F%EF%BC%89/index.html">
 <meta property="og:site_name" content="坐观の小站">
-<meta property="og:description" content="几天前，我原以为我已经较完美地实现了Noita中的锁血，然而现实又给了我当头一棒。 在Noita中，一些怪物，如：大眼、变形魔，可以将玩家变形。而被变形后，玩家血量地址会发生改变，依旧是诡计多端的倒数第2个偏移，它会发生改变。当变形结束后，血量地址会再变一次。 实验证明，上一篇文章中猜倒数第2个偏移的方法是不正确的，尤其是变形后的情况。 于是，我不断地调试，以及查看更多的CE教程，期望能找到">
+<meta property="og:description" content="因为对上一个版本的解决方案并不满意，在重构完代码后，我又继续对Noita进行分析。 首先，打了一个能生成任意物品的MOD，用于生成变形魔药，方便我进行分析。对血量下面1、2级地址进行查找访问、写入，筛选出了如下代码片段： 1noita.exe+4E4173: 89 0C 98              - mov [eax+ebx*4],ecx 这行代码，个人推测是和新生成物品相关的。而变形">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://zuoguan-piclib-1257172707.cos.ap-guangzhou.myqcloud.com/assets/17.jpg?imageMogr2/thumbnail/700x320%3E">
-<meta property="article:published_time" content="2025-01-23T07:40:49.000Z">
-<meta property="article:modified_time" content="2025-01-23T08:13:51.230Z">
+<meta property="og:image" content="https://zuoguan-piclib-1257172707.cos.ap-guangzhou.myqcloud.com/assets/18.jpg?imageMogr2/thumbnail/700x320%3E">
+<meta property="article:published_time" content="2025-01-30T05:02:25.000Z">
+<meta property="article:modified_time" content="2025-01-30T07:31:05.299Z">
 <meta property="article:author" content="zuoguan">
 <meta property="article:tag" content="内存修改">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://zuoguan-piclib-1257172707.cos.ap-guangzhou.myqcloud.com/assets/17.jpg?imageMogr2/thumbnail/700x320%3E">
+<meta name="twitter:image" content="https://zuoguan-piclib-1257172707.cos.ap-guangzhou.myqcloud.com/assets/18.jpg?imageMogr2/thumbnail/700x320%3E">
   
   
   
-  <title>Noita内存修改：实现无敌的漫漫长路 - 坐观の小站</title>
+  <title>Noita内存修改：全部防出去了（？） - 坐观の小站</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -208,13 +208,13 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('https://zuoguan-piclib-1257172707.cos.ap-guangzhou.myqcloud.com/assets/17.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('https://zuoguan-piclib-1257172707.cos.ap-guangzhou.myqcloud.com/assets/18.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Noita内存修改：实现无敌的漫漫长路"></span>
+            <span id="subtitle" data-typed-text="Noita内存修改：全部防出去了（？）"></span>
           
         </div>
 
@@ -225,8 +225,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-01-23 15:40" pubdate>
-          2025年1月23日 下午
+        <time datetime="2025-01-30 13:02" pubdate>
+          2025年1月30日 下午
         </time>
       </span>
     
@@ -237,7 +237,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          459 字
+          804 字
         
       </span>
     
@@ -248,7 +248,7 @@
         
         
         
-          4 分钟
+          7 分钟
         
       </span>
     
@@ -285,22 +285,42 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Noita内存修改：实现无敌的漫漫长路</h1>
+            <h1 id="seo-header">Noita内存修改：全部防出去了（？）</h1>
             
             
               <div class="markdown-body">
                 
-                <p>几天前，我原以为我已经较完美地实现了Noita中的锁血，然而现实又给了我当头一棒。</p>
-<p>在Noita中，一些怪物，如：大眼、变形魔，可以将玩家变形。而被变形后，玩家血量地址会发生改变，依旧是诡计多端的倒数第2个偏移，它会发生改变。当变形结束后，血量地址会再变一次。</p>
-<p>实验证明，上一篇文章中猜倒数第2个偏移的方法是不正确的，尤其是变形后的情况。</p>
-<p>于是，我不断地调试，以及查看更多的CE教程，期望能找到一个完美的解法。可惜求而不得。目前有一个能准确找到倒数第2个偏移，但是使用时略显麻烦的方法。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs assembly">noita.exe+4C8056: 8B 45 08  - mov eax,[ebp+08]<br></code></pre></td></tr></table></figure>
-<p>此时的<code>eax</code>×4，就是倒数第2个偏移，但不只是玩家的，还可能是怪物的。但是在游戏暂停时，这行代码依旧会被执行，并且，此时的<code>eax</code>×4，只会是玩家血量的倒数第2个偏移，这就给了我们操作的机会。</p>
-<p>大致思路：在此处注入代码，将<code>eax</code>的值写入到一块临时的内存中。等待0.1秒，读取临时内存中的数据。接着就是取消注入、释放内存、AOB注入。</p>
-<p>当被变形时就重新获取偏移、重新注入；变形结束又执行一次。略显麻烦了，但却是目前最优解了。</p>
+                <p>因为对上一个版本的解决方案并不满意，在重构完代码后，我又继续对Noita进行分析。</p>
+<p>首先，打了一个能生成任意物品的MOD，用于生成变形魔药，方便我进行分析。对血量下面1、2级地址进行查找访问、写入，筛选出了如下代码片段：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs assembly">noita.exe+4E4173: 89 0C 98              - mov [eax+ebx*4],ecx<br></code></pre></td></tr></table></figure>
+<p>这行代码，个人推测是和新生成物品相关的。而变形成怪物与变回人，也是通过new一个对象完成的，此时<code>ebx*4</code>就是offset。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs assembly">noita.exe+4E43F2: C7 04 90 00 00 00 00  - mov [eax+edx*4],00000000<br></code></pre></td></tr></table></figure>
+<p>这行代码，应该是与变形后，删除原对象相关的。</p>
+<p>我很希望能在第1个代码片段附近，找到能判断是否是因玩家被变形而执行这段代码的标志。可惜，未果。</p>
+<p>那就只能结合以上两个片段了。基本思路就是，在第1个代码片段处，将<code>ebx</code>写入到内存中。在第2个代码片段处，判断被删除的对象是不是玩家，如果是，那就从将前边写入的<code>ebx</code>写入到另一块内存中。锁血脚本则读取后一块内存中的值来计算偏移。</p>
+<p>这种解决方法，是假设了被变形后，第1个代码片段只执行一次，然后就执行第2个代码片段。但是变形回人时，就不符合假设了。不过我观察到，此时1个代码片段会执行3次，第一次<code>ebx*4</code>是offset，后两次不是，而后两次<code>[ecx+4c]</code>，即可能的血量，都是1.75。那么就可以以此为为标志，如果是1.75就不写入内存。</p>
+<p>在汇编中，是不能直接写1.75的，这需要一些技巧：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs assembly">movss xmm0,[ecx+4c]<br>mov eax,3FE00000 // 1.75 的 IEEE 754 单精度浮点数<br>movd xmm1,eax<br>comiss xmm0,xmm1<br></code></pre></td></tr></table></figure>
 <hr />
-<p>题外话</p>
-<p>在Noita中，就算完美实现了锁血，也还有目盲、麻痹、禁止施法等负面状态，虽不致死，但会让你深刻认识到自己不是神明，不是完全无敌。实现这样的完全无敌，是一条漫漫长路。</p>
+<p>按照这种从内存中读取offset的方案，在重新进行新一局游戏时，需要重新注入。那么是否有不需要重新注入的方法呢？</p>
+<p>我们已经知道了，重开一局游戏，offset一定会是0，只要能找到能判断重开一局游戏的标志就好了。</p>
+<p>一开始的想法是，第1个代码片段是和new对象有关的，那么应该会在游戏开始时new玩家。如果<code>ebx</code>为0，且玩家原先的地址为0，则说明重开了一局游戏。</p>
+<p>但非常诡异的是，居然没有<code>ebx</code>的时刻。且玩家原先的地址不一定为0。</p>
+<p>又是一番查找，找到了这个代码片段：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs assembly">noita.exe+4C84AE: C7 46 40 00 00 00 00  - mov [esi+40],00000000<br></code></pre></td></tr></table></figure>
+<p><code>[esi+40]</code>相当于上两个代码片段中的<code>eax</code>，所以，dddd。执行这行代码，意味着重新开了一局游戏。</p>
+<hr />
+<p>完整解决方案：</p>
+<ol type="1">
+<li><p>获取初始offset</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs assembly">mov eax,[ebp+08]<br>mov [offset],eax<br></code></pre></td></tr></table></figure></li>
+<li><p>变形时，更新offset</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs assembly">mov [eax+ebx*4],ecx<br>movss xmm0,[ecx+4c]<br>mov eax,3FE00000<br>movd xmm1,eax<br>comiss xmm0,xmm1<br>je return<br>mov [tmpoffset],ebx<br>jmp return<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs assembly">mov [eax+edx*4],00000000<br>mov edx,[offset]<br>mov eax,[noita.exe+e04b98]<br>mov eax,[eax+2c]<br>mov eax,[eax+7c]<br>mov eax,[eax+40]<br>mov eax,[eax+edx*4]<br>test eax,eax<br>jne return<br>mov edx,[tmpoffset]<br>mov [offset],edx<br>jmp return<br></code></pre></td></tr></table></figure></li>
+<li><p>重开一局游戏时，更新offset</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs assembly">mov [esi+40],00000000<br>mov [offset],00000000<br></code></pre></td></tr></table></figure></li>
+</ol>
+<p>现在，只需要在刚开始游戏时，注入一次，就能实现全程锁血了。</p>
 
                 
               </div>
@@ -348,18 +368,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/01/30/Noita%E5%86%85%E5%AD%98%E4%BF%AE%E6%94%B9%EF%BC%9A%E5%85%A8%E9%83%A8%E9%98%B2%E5%87%BA%E5%8E%BB%E4%BA%86%EF%BC%88%EF%BC%9F%EF%BC%89/" title="Noita内存修改：全部防出去了（？）">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Noita内存修改：全部防出去了（？）</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/01/16/Noita%E5%86%85%E5%AD%98%E4%BF%AE%E6%94%B9%EF%BC%9A%E5%AE%9E%E7%8E%B0%E6%97%A0%E6%95%8C%E7%9A%84%E6%AD%A3%E7%A1%AE%E5%A7%BF%E5%8A%BF/" title="Noita内存修改：实现无敌的正确姿势">
-                        <span class="hidden-mobile">Noita内存修改：实现无敌的正确姿势</span>
+                      <a href="/2025/01/23/Noita%E5%86%85%E5%AD%98%E4%BF%AE%E6%94%B9%EF%BC%9A%E5%AE%9E%E7%8E%B0%E6%97%A0%E6%95%8C%E7%9A%84%E6%BC%AB%E6%BC%AB%E9%95%BF%E8%B7%AF/" title="Noita内存修改：实现无敌的漫漫长路">
+                        <span class="hidden-mobile">Noita内存修改：实现无敌的漫漫长路</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
