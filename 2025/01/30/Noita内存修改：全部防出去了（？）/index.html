@@ -28,7 +28,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://zuoguan-piclib-1257172707.cos.ap-guangzhou.myqcloud.com/assets/18.jpg?imageMogr2/thumbnail/700x320%3E">
 <meta property="article:published_time" content="2025-01-30T05:02:25.000Z">
-<meta property="article:modified_time" content="2025-01-30T07:31:05.299Z">
+<meta property="article:modified_time" content="2025-02-22T05:35:44.054Z">
 <meta property="article:author" content="zuoguan">
 <meta property="article:tag" content="内存修改">
 <meta name="twitter:card" content="summary_large_image">
@@ -237,7 +237,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          804 字
+          807 字
         
       </span>
     
@@ -304,8 +304,8 @@
 <hr />
 <p>按照这种从内存中读取offset的方案，在重新进行新一局游戏时，需要重新注入。那么是否有不需要重新注入的方法呢？</p>
 <p>我们已经知道了，重开一局游戏，offset一定会是0，只要能找到能判断重开一局游戏的标志就好了。</p>
-<p>一开始的想法是，第1个代码片段是和new对象有关的，那么应该会在游戏开始时new玩家。如果<code>ebx</code>为0，且玩家原先的地址为0，则说明重开了一局游戏。</p>
-<p>但非常诡异的是，居然没有<code>ebx</code>的时刻。且玩家原先的地址不一定为0。</p>
+<p>一开始的想法是，第1个代码片段是和new对象有关的，那么应该会在游戏开始时new玩家。如果<code>ebx</code>为0，且玩家原先地址的值为0，则说明重开了一局游戏。</p>
+<p>但非常诡异的是，居然没有<code>ebx</code>为0的时刻。且玩家原先地址的值不一定为0。</p>
 <p>又是一番查找，找到了这个代码片段：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs assembly">noita.exe+4C84AE: C7 46 40 00 00 00 00  - mov [esi+40],00000000<br></code></pre></td></tr></table></figure>
 <p><code>[esi+40]</code>相当于上两个代码片段中的<code>eax</code>，所以，dddd。执行这行代码，意味着重新开了一局游戏。</p>
@@ -367,6 +367,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2025/02/21/%E9%83%A8%E8%90%BD%E5%86%B2%E7%AA%81%E8%BE%85%E5%8A%A9%E5%90%8E%E8%AE%B0%EF%BC%9A%E6%96%B0%C2%B7%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB/" title="部落冲突辅助后记：新·数字识别">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">部落冲突辅助后记：新·数字识别</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
