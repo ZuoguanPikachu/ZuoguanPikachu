@@ -1,0 +1,726 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://zuoguan-piclib-1257172707.cos.ap-guangzhou.myqcloud.com/assets/cat.jpg">
+  <link rel="icon" href="https://zuoguan-piclib-1257172707.cos.ap-guangzhou.myqcloud.com/assets/cat.jpg">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="zuoguan">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="scipy.stats提供了许多统计检验方法 * 单样本t检验 1scipy.stats.ttest_1samp(a, popmean, axis&#x3D;0, nan_policy&#x3D;&#x27;propagate&#x27;, alternative&#x3D;&quot;two-sided&quot;)  配对样本t检验 1scipy.stats.ttest_rel(a, b, axis&#x3D;0, nan_p">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用SciPy进行统计分析">
+<meta property="og:url" content="https://zuoguan.netlify.app/2023/05/22/%E4%BD%BF%E7%94%A8SciPy%E8%BF%9B%E8%A1%8C%E7%BB%9F%E8%AE%A1%E5%88%86%E6%9E%90/index.html">
+<meta property="og:site_name" content="坐观の小站">
+<meta property="og:description" content="scipy.stats提供了许多统计检验方法 * 单样本t检验 1scipy.stats.ttest_1samp(a, popmean, axis&#x3D;0, nan_policy&#x3D;&#x27;propagate&#x27;, alternative&#x3D;&quot;two-sided&quot;)  配对样本t检验 1scipy.stats.ttest_rel(a, b, axis&#x3D;0, nan_p">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zuoguan-piclib-1257172707.cos.ap-guangzhou.myqcloud.com/assets/4.jpg?imageMogr2/thumbnail/700x320%3E">
+<meta property="article:published_time" content="2023-05-22T01:03:51.000Z">
+<meta property="article:modified_time" content="2025-03-06T13:11:09.834Z">
+<meta property="article:author" content="zuoguan">
+<meta property="article:tag" content="统计">
+<meta property="article:tag" content="Python">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://zuoguan-piclib-1257172707.cos.ap-guangzhou.myqcloud.com/assets/4.jpg?imageMogr2/thumbnail/700x320%3E">
+  
+  
+  
+  <title>使用SciPy进行统计分析 - 坐观の小站</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zuoguan.netlify.app","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>坐观の小站</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://zuoguan-piclib-1257172707.cos.ap-guangzhou.myqcloud.com/assets/4.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="使用SciPy进行统计分析"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-05-22 09:03" pubdate>
+          2023年5月22日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          631 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          6 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">使用SciPy进行统计分析</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p><code>scipy.stats</code>提供了许多统计检验方法 * 单样本t检验
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">scipy.stats.ttest_1samp(a, popmean, axis=<span class="hljs-number">0</span>, nan_policy=<span class="hljs-string">&#x27;propagate&#x27;</span>, alternative=<span class="hljs-string">&quot;two-sided&quot;</span>)<br></code></pre></td></tr></table></figure></p>
+<ul>
+<li><p>配对样本t检验 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">scipy.stats.ttest_rel(a, b, axis=<span class="hljs-number">0</span>, nan_policy=<span class="hljs-string">&#x27;propagate&#x27;</span>, alternative=<span class="hljs-string">&quot;two-sided&quot;</span>)<br></code></pre></td></tr></table></figure></p></li>
+<li><p>两独立样本t检验 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">scipy.stats.ttest_ind(<br>    a, b, axis=<span class="hljs-number">0</span>, equal_var=<span class="hljs-literal">True</span>, nan_policy=<span class="hljs-string">&#x27;propagate&#x27;</span>,permutations=<span class="hljs-literal">None</span>,<br>    random_state=<span class="hljs-literal">None</span>, alternative=<span class="hljs-string">&quot;two-sided&quot;</span>, trim=<span class="hljs-number">0</span><br>)<br></code></pre></td></tr></table></figure></p></li>
+<li><p>完全随机设计的方差分析 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">scipy.stats.f_oneway(*samples, axis=<span class="hljs-number">0</span>)<br></code></pre></td></tr></table></figure></p></li>
+<li><p>随机区组设计的方差分析
+在<code>scipy.stats</code>中似乎未提供可使用的函数，我尝试实现了一下，水平有限且一般使用用不到高维度的数据，所以仅支持1维的数据。
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy<br><span class="hljs-keyword">from</span> scipy <span class="hljs-keyword">import</span> special<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">f_twoway</span>(<span class="hljs-params">*samples</span>):<br>    all_data = numpy.asarray(samples)<br>    k, m = all_data.shape<br>    <br>    <span class="hljs-comment"># 计算均值，exp：各处理组，block：各处理组</span><br>    total_avg = all_data.mean()<br>    exp_avgs = all_data.mean(<span class="hljs-number">1</span>)<br>    block_avgs = all_data.mean(<span class="hljs-number">0</span>)<br>    <br>    <span class="hljs-comment"># 计算平方和，err：误差</span><br>    total_ss = numpy.power(all_data - total_avg, <span class="hljs-number">2</span>).<span class="hljs-built_in">sum</span>()<br>    exp_ss = (numpy.power(exp_avgs - total_avg, <span class="hljs-number">2</span>)*m).<span class="hljs-built_in">sum</span>()<br>    block_ss = (numpy.power(block_avgs - total_avg, <span class="hljs-number">2</span>)*k).<span class="hljs-built_in">sum</span>()<br>    err_ss = total_ss - exp_ss - block_ss<br>    <br>    <span class="hljs-comment"># 计算均方</span><br>    exp_ms = exp_ss/(k-<span class="hljs-number">1</span>)<br>    err_ms = err_ss/((k-<span class="hljs-number">1</span>)*(m-<span class="hljs-number">1</span>))<br>    <br>    <span class="hljs-comment"># 计算F值与P值</span><br>    statistic = exp_ms/err_ms<br>    p_value = special.fdtrc(k-<span class="hljs-number">1</span>, (k-<span class="hljs-number">1</span>)*(m-<span class="hljs-number">1</span>), statistic)<br><br>    <span class="hljs-keyword">return</span> statistic, p_value<br></code></pre></td></tr></table></figure></p></li>
+<li><p>卡方检验 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">scipy.stats.chi2_contingency(observed, correction=<span class="hljs-literal">True</span>, lambda_=<span class="hljs-literal">None</span>)<br></code></pre></td></tr></table></figure> <code>observed</code>: 表格</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"></th>
+<th style="text-align: center;">state1</th>
+<th style="text-align: center;">state2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">group1</td>
+<td style="text-align: center;">a</td>
+<td style="text-align: center;">b</td>
+</tr>
+<tr>
+<td style="text-align: center;">group2</td>
+<td style="text-align: center;">c</td>
+<td style="text-align: center;">d</td>
+</tr>
+</tbody>
+</table>
+<p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">observed = [<br>    [a, b],<br>    [c, d],<br>]<br></code></pre></td></tr></table></figure></p></li>
+<li><p>Fisher确切概率法 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">scipy.stats.fisher_exact(table, alternative=<span class="hljs-string">&#x27;two-sided&#x27;</span>)<br></code></pre></td></tr></table></figure></p></li>
+<li><p>配对设计资料的符号秩和检验 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">scipy.stats.wilcoxon(<br>    x, y=<span class="hljs-literal">None</span>, zero_method=<span class="hljs-string">&quot;wilcox&quot;</span>, correction=<span class="hljs-literal">False</span>,<br>    alternative=<span class="hljs-string">&quot;two-sided&quot;</span>, method=<span class="hljs-string">&#x27;auto&#x27;</span><br>)<br></code></pre></td></tr></table></figure></p></li>
+<li><p>两独立样本的符号秩和检验 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">scipy.stats.mannwhitneyu(<br>    x, y, use_continuity=<span class="hljs-literal">True</span>, alternative=<span class="hljs-string">&quot;two-sided&quot;</span>,<br>    axis=<span class="hljs-number">0</span>, method=<span class="hljs-string">&quot;auto&quot;</span><br>)<br></code></pre></td></tr></table></figure>
+该函数返回的是检验统计量<span
+class="math inline">\(U\)</span>，然而，我们一般更倾向使用统计量<span
+class="math inline">\(Z\)</span>，其计算公式如下</p>
+<p><span class="math display">\[z =
+\frac{U-m_{U}}{\sigma_{U}}\]</span></p>
+<p>其中，<span class="math inline">\(m_{U} = \frac{n_{1}n_{2}}{2},
+\sigma_{U}=\sqrt{\frac{n_{1}
+n_{2}\left(n_{1}+n_{2}+1\right)}{12}-\frac{n_{1} n_{2}
+\sum_{k=1}^{K}\left(t_{k}^{3}-t_{k}\right)}{12 n(n-1)}}\)</span></p>
+<p>其中，<span class="math inline">\(n_{1},
+n_{2}\)</span>分别为两组样本的样本数，<span class="math inline">\(n =
+n_{1} + n_{2}\)</span>。<span
+class="math inline">\(t_{k}\)</span>指并列第<span
+class="math inline">\(k\)</span>的个数。 当不存在并列的情况时，<span
+class="math inline">\(\sigma_{U}\)</span>可以简化为<span
+class="math inline">\(\sigma_{U} = \sqrt{\frac{n_{1}
+n_{2}\left(n_{1}+n_{2}+1\right)}{12}}\)</span></p>
+<p>通过如下代码，即可算出统计量<span class="math inline">\(Z\)</span>：
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> collections <span class="hljs-keyword">import</span> Counter<br><br>n1 = <span class="hljs-built_in">len</span>(samples1)<br>n2 = <span class="hljs-built_in">len</span>(samples2)<br><br><span class="hljs-comment"># 将两组样本合并，用Counter计算每一个值的个数</span><br>counter = Counter(samples1 + samples2)<br><br><span class="hljs-comment"># 计算与并列相关的那一项</span><br>sigma_ties = <span class="hljs-built_in">sum</span>(<span class="hljs-built_in">map</span>(<span class="hljs-keyword">lambda</span> item: item**<span class="hljs-number">3</span>-item, counter.values()))<br>sigma_ties = (sigma_ties*n1*n2) / (<span class="hljs-number">12</span>*(n1+n2)*(n1+n2-<span class="hljs-number">1</span>))<br>sigma_ties = (n1*n2*(n1+n2+<span class="hljs-number">1</span>)/<span class="hljs-number">12</span> - sigma_ties)**<span class="hljs-number">0.5</span><br><br><span class="hljs-comment"># 计算统计量Z</span><br>z = (statistic - n1*n2*<span class="hljs-number">0.5</span>) / sigma_ties<br></code></pre></td></tr></table></figure></p></li>
+<li><p>多个独立样本的符合秩和检验 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">scipy.stats.kruskal(*samples, nan_policy=<span class="hljs-string">&#x27;propagate&#x27;</span>):<br></code></pre></td></tr></table></figure></p></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BC%96%E7%A8%8B/" class="category-chain-item">编程</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E7%BB%9F%E8%AE%A1/" class="print-no-link">#统计</a>
+      
+        <a href="/tags/Python/" class="print-no-link">#Python</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/07/30/%E4%B8%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E4%B8%80%E5%8F%AA%E5%8F%AF%E7%88%B1%E7%9A%84%E7%8C%AB%E7%8C%AB/" title="为博客添加一只可爱的猫猫">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">为博客添加一只可爱的猫猫</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/04/13/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%AD%E6%95%B0%E6%8D%AE%E7%9A%84%E7%AE%80%E5%8D%95%E5%A4%84%E7%90%86/" title="机器学习中数据的简单处理">
+                        <span class="hidden-mobile">机器学习中数据的简单处理</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
