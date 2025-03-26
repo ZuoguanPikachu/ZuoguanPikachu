@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>不专业，但主观！几种安卓开发框架的使用感受</title>
+    <link href="/2025/03/26/%E4%B8%8D%E4%B8%93%E4%B8%9A%EF%BC%8C%E4%BD%86%E4%B8%BB%E8%A7%82%EF%BC%81%E5%87%A0%E7%A7%8D%E5%AE%89%E5%8D%93%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6%E7%9A%84%E4%BD%BF%E7%94%A8%E6%84%9F%E5%8F%97/"/>
+    <url>/2025/03/26/%E4%B8%8D%E4%B8%93%E4%B8%9A%EF%BC%8C%E4%BD%86%E4%B8%BB%E8%A7%82%EF%BC%81%E5%87%A0%E7%A7%8D%E5%AE%89%E5%8D%93%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6%E7%9A%84%E4%BD%BF%E7%94%A8%E6%84%9F%E5%8F%97/</url>
+    
+    <content type="html"><![CDATA[<p>从萌生开发安卓APP的想法到现在，一晃过去了好几年。期间，我尝试过各种开发框架，也陆陆续续开发了一些应用。最近，用<code>Flutter</code>开发了<ahref="https://github.com/ZuoguanPikachu/BiliMusic"><code>BiliMusic</code></a>，以<code>BiliBili</code>为音频源的音乐播放器。<code>Flutter</code>是我接触的第一个框架，兜兜转转，最终又回到了它的怀抱，有点感慨，所以想写一篇博客，分享一下自己的这几年上手过的开发框架的使用感受。</p><h2 id="flutter">Flutter</h2><p>我自己也不知道为什么，对<code>Java</code>非常抗拒，所以没有选择原生开发，而是机缘巧合下了解到的<code>Flutter</code>。</p><p><code>Flutter</code>最大的一个痛点在于 Widget嵌套的复杂性。它要求开发者通过层层嵌套<code>Widget</code>来构建界面。对于复杂的布局，代码嵌套可能会变得非常深，可读性和维护性都大打折扣。不过，通过抽取组件复用、结合状态管理库，这个问题可以得到一定程度的缓解。</p><p><code>Flutter</code>的异步处理是它的亮点之一，但对于新手来说，却是个不小的挑战。在没有AI辅助的日子里，我花了半天时间才搞明白<code>FutureBuilder</code>和<code>StreamBuilder</code>的用法和适用场景。这成功地把我劝退了。</p><p>大约一年前，我发现了<ahref="https://github.com/guozhigq/pilipala"><code>PiliPala</code></a>这个应用，得知它是用<code>Flutter</code>开发的后，我对这个框架重新燃起了兴趣。</p><p>有了AI的帮助，我很快完成了<code>BiliMusic</code>的Demo。这次的开发体验好了很多，快速搭建一个 Demo不再是难事。<code>GetX</code>状态管理库用起来特别顺手，极大提升了开发效率。开发过程比较依赖第三方库，不过<code>Pub</code>包管理生态里的库数量丰富。当然，偶尔也会遇到库版本不兼容的问题。</p><h2 id="uniapp">UniApp</h2><p><code>uni-app</code>是我最早接触的跨平台开发框架，但一直没能真正上手。主要原因是，我想开发的应用大多依赖爬虫功能，而前端跨域问题始终是个绕不过去的坎。此外，要实现一些原生功能也显得颇为棘手。不过，凭借<code>HTML</code>和<code>CSS</code>的强大表现力，<code>uni-app</code>确实能打造出UI 相当精美的应用。</p><h2 id="xamarin-maui">Xamarin / MAUI</h2><p><code>Xamarin / MAUI</code>是我用得最多的框架了。</p><p>在大二的暑假，学校安排了见习，但是实验室的老师并不是很上心，对我们是放养状态。于是，我趁机自学了<code>Xamarin</code>。恰好那时，我萌生了一个想法：开发一款集课表查询、考试查询和图书馆预约功能于一体的校园助手。因为学校官网的体验实在太差，前辈开发的微信公众号也槽点颇多。跟着<ahref="https://space.bilibili.com/15135791">东北大学张引</a>老师的课程，我学习了<code>MVVM</code>模式，写出了相对优雅的代码，后续维护也轻松了不少。</p><p>没多久，<code>MAUI</code>就发布了。正巧，学校的图书馆预约系统也迎来了改版。于是，我顺势将图书馆预约功能独立出来，用<code>MAUI</code>重写了一版。</p><p><code>MAUI</code>的开发效率很高，对新人颇为友好。<ahref="https://space.bilibili.com/15135791">东北大学张引</a>老师的课程作为入门指引，新手也不容易写出糟糕的代码。<code>MAUI</code>的<code>MVVM</code>，初次接触时让人觉得很高级，代码优雅且结构清晰。后面接触了<code>Vue</code>、<code>Flutter</code>的<code>GetX</code>，我开始觉得<code>MAUI</code>的<code>MVVM</code>有点繁琐。<code>MAUI</code>的可自定义程度较低，想要高度定制化，就不得不深入原生开发。<code>Nuget</code>包管理工具使用体验很不错，相较于<code>Flutter</code>使用<code>pubspec.yaml</code>依赖管理方式，更合我心意。</p><h2 id="jetpack-compose">Jetpack Compose</h2><p>与<code>Flutter</code>一样，采用了声明式UI。不过我当时没有精力去学<code>Kotlin</code>，用起来不是很顺手。费了九牛二虎之力，才通过<code>Hilt</code>实现了<code>MVVM</code>模式。那时候，<code>Material 3</code>似乎还在测试阶段，写代码时需要在前面加上类似<code>@ExperimentalMaterial3Api</code>的注解——具体记不清了，总之是用来标记这些功能尚属实验性质。最终，代码写得不够优雅，我便放弃了继续探索。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>其他</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>杂谈</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>部落冲突辅助后记：新·数字识别</title>
     <link href="/2025/02/21/%E9%83%A8%E8%90%BD%E5%86%B2%E7%AA%81%E8%BE%85%E5%8A%A9%E5%90%8E%E8%AE%B0%EF%BC%9A%E6%96%B0%C2%B7%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB/"/>
     <url>/2025/02/21/%E9%83%A8%E8%90%BD%E5%86%B2%E7%AA%81%E8%BE%85%E5%8A%A9%E5%90%8E%E8%AE%B0%EF%BC%9A%E6%96%B0%C2%B7%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB/</url>
