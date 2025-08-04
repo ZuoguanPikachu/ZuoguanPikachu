@@ -1,0 +1,667 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://zuoguan-piclib-1257172707.cos.ap-guangzhou.myqcloud.com/assets/cat.jpg">
+  <link rel="icon" href="https://zuoguan-piclib-1257172707.cos.ap-guangzhou.myqcloud.com/assets/cat.jpg">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="zuoguan">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="mitmproxy 是一个功能强大的交互式中间人代理（MITM，Man-In-The-Middle Proxy），支持 HTTP、HTTPS 和 WebSocket，可以用于抓包、修改请求和响应。 基本用法 1. 启动 mitmproxy（默认监听 8080 端口） 1mitmproxy 或者使用 Web UI： 1mitmweb 默认监听地址为 http:&#x2F;&#x2F;127.0.0.1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mitmproxy的简单使用">
+<meta property="og:url" content="https://zuoguan.netlify.app/2025/08/04/Mitmproxy%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:site_name" content="坐观の小站">
+<meta property="og:description" content="mitmproxy 是一个功能强大的交互式中间人代理（MITM，Man-In-The-Middle Proxy），支持 HTTP、HTTPS 和 WebSocket，可以用于抓包、修改请求和响应。 基本用法 1. 启动 mitmproxy（默认监听 8080 端口） 1mitmproxy 或者使用 Web UI： 1mitmweb 默认监听地址为 http:&#x2F;&#x2F;127.0.0.1">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zuoguan-piclib-1257172707.cos.ap-guangzhou.myqcloud.com/assets/21.jpg?imageMogr2/thumbnail/700x320%3E">
+<meta property="article:published_time" content="2025-08-04T01:17:31.000Z">
+<meta property="article:modified_time" content="2025-08-04T04:45:11.356Z">
+<meta property="article:author" content="zuoguan">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="爬虫">
+<meta property="article:tag" content="代理">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://zuoguan-piclib-1257172707.cos.ap-guangzhou.myqcloud.com/assets/21.jpg?imageMogr2/thumbnail/700x320%3E">
+  
+  
+  
+  <title>Mitmproxy的简单使用 - 坐观の小站</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zuoguan.netlify.app","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>坐观の小站</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://zuoguan-piclib-1257172707.cos.ap-guangzhou.myqcloud.com/assets/21.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Mitmproxy的简单使用"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-08-04 09:17" pubdate>
+          2025年8月4日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          946 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          8 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Mitmproxy的简单使用</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p><code>mitmproxy</code>
+是一个功能强大的交互式中间人代理（MITM，Man-In-The-Middle Proxy），支持
+HTTP、HTTPS 和 WebSocket，可以用于抓包、修改请求和响应。</p>
+<h2 id="基本用法">基本用法</h2>
+<h3 id="启动-mitmproxy默认监听-8080-端口">1. 启动 mitmproxy（默认监听
+8080 端口）</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">mitmproxy<br></code></pre></td></tr></table></figure>
+<p>或者使用 Web UI：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">mitmweb<br></code></pre></td></tr></table></figure>
+<p>默认监听地址为 <code>http://127.0.0.1:8080</code>，Web UI 地址为
+<code>http://127.0.0.1:8081</code></p>
+<h3 id="设置代理">2. 设置代理</h3>
+<p>在你要抓包的设备中，手动设置 HTTP/HTTPS 代理</p>
+<h3 id="安装-mitmproxy-证书用于-https-解密">3. 安装 mitmproxy 证书（用于
+HTTPS 解密）</h3>
+<ul>
+<li><p>在浏览器中访问<code>http://mitm.it</code></p></li>
+<li><p>下载并安装相应平台的根证书，并进行安装</p></li>
+</ul>
+<h2 id="代理">代理</h2>
+<p>很早就听说过<code>mitmproxy</code>了，但是因为不知道要手动设置系统代理，所以一直不知道该怎么用，毕竟其他抓包工具都是自动设置代理的。</p>
+<h3 id="clash也需要系统代理">Clash也需要系统代理？</h3>
+<h4 id="方法1clash作为上游代理">方法1、Clash作为上游代理</h4>
+<p>指定 Clash 作为上游代理（127.0.0.1:7897）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">mitmproxy --mode upstream:http://127.0.0.1:7897<br></code></pre></td></tr></table></figure>
+<p>将系统代理设置为 <code>127.0.0.1:8080</code></p>
+<h4 id="方法2clash启用tun模式">方法2、Clash启用TUN模式</h4>
+<p>TUN 模式：通过内核 TUN
+虚拟网卡机制，将整个系统的所有流量（包括不遵守系统代理设置的应用）强制路由到
+Clash 进行分流，而不依赖系统代理。</p>
+<h3 id="自动设置系统代理">自动设置系统代理</h3>
+<p>自己手动设置代理还是太麻烦了，我们可以使用Python自动设置系统代理</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> winreg<br><span class="hljs-keyword">import</span> ctypes<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">set_system_proxy</span>(<span class="hljs-params">proxy_server=<span class="hljs-string">&#x27;127.0.0.1&#x27;</span>, proxy_port=<span class="hljs-number">8080</span>, enable=<span class="hljs-literal">True</span></span>):<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    修改 Windows 系统代理设置。</span><br><span class="hljs-string">    :param proxy_server: 代理服务器地址</span><br><span class="hljs-string">    :param proxy_port: 代理端口</span><br><span class="hljs-string">    :param enable: 是否启用代理</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    <span class="hljs-comment"># 注册表路径</span><br>    reg_path = <span class="hljs-string">r&quot;Software\Microsoft\Windows\CurrentVersion\Internet Settings&quot;</span><br><br>    <span class="hljs-keyword">try</span>:<br>        <span class="hljs-comment"># 打开注册表项</span><br>        <span class="hljs-keyword">with</span> winreg.OpenKey(winreg.HKEY_CURRENT_USER, reg_path, <span class="hljs-number">0</span>, winreg.KEY_WRITE) <span class="hljs-keyword">as</span> reg_key:<br><br>            <span class="hljs-comment"># 设置代理启用状态 (1: 启用, 0: 禁用)</span><br>            winreg.SetValueEx(reg_key, <span class="hljs-string">&quot;ProxyEnable&quot;</span>, <span class="hljs-number">0</span>, winreg.REG_DWORD, <span class="hljs-number">1</span> <span class="hljs-keyword">if</span> enable <span class="hljs-keyword">else</span> <span class="hljs-number">0</span>)<br><br>            <span class="hljs-comment"># 设置代理服务器地址和端口</span><br>            proxy_string = <span class="hljs-string">f&quot;<span class="hljs-subst">&#123;proxy_server&#125;</span>:<span class="hljs-subst">&#123;proxy_port&#125;</span>&quot;</span><br>            winreg.SetValueEx(reg_key, <span class="hljs-string">&quot;ProxyServer&quot;</span>, <span class="hljs-number">0</span>, winreg.REG_SZ, proxy_string)<br><br>            <span class="hljs-comment"># 可选：设置不使用代理的地址（绕过代理）</span><br>            bypass = <span class="hljs-string">&quot;localhost;127.0.0.1;&lt;local&gt;&quot;</span><br>            winreg.SetValueEx(reg_key, <span class="hljs-string">&quot;ProxyOverride&quot;</span>, <span class="hljs-number">0</span>, winreg.REG_SZ, bypass)<br><br>        <span class="hljs-comment"># 通知系统代理设置已更改</span><br>        ctypes.windll.Wininet.InternetSetOptionW(<span class="hljs-number">0</span>, <span class="hljs-number">39</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>)  <span class="hljs-comment"># 39 = INTERNET_OPTION_SETTINGS_CHANGED</span><br>        ctypes.windll.Wininet.InternetSetOptionW(<span class="hljs-number">0</span>, <span class="hljs-number">37</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>)  <span class="hljs-comment"># 37 = INTERNET_OPTION_REFRESH</span><br><br>        <span class="hljs-keyword">if</span> enable:<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;代理已开启！&quot;</span>)<br>        <span class="hljs-keyword">else</span>:<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;代理已关闭！&quot;</span>)<br><br>    <span class="hljs-keyword">except</span> Exception <span class="hljs-keyword">as</span> e:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;设置代理时出错: <span class="hljs-subst">&#123;e&#125;</span>&quot;</span>)<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">get_system_proxy</span>():<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    读取当前系统代理设置。</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    reg_path = <span class="hljs-string">r&quot;Software\Microsoft\Windows\CurrentVersion\Internet Settings&quot;</span><br><br>    <span class="hljs-keyword">try</span>:<br>        <span class="hljs-keyword">with</span> winreg.OpenKey(winreg.HKEY_CURRENT_USER, reg_path, <span class="hljs-number">0</span>, winreg.KEY_READ) <span class="hljs-keyword">as</span> reg_key:<br>            <span class="hljs-comment"># 读取代理启用状态</span><br>            proxy_enable, _ = winreg.QueryValueEx(reg_key, <span class="hljs-string">&quot;ProxyEnable&quot;</span>)<br>            proxy_server, _ = winreg.QueryValueEx(reg_key, <span class="hljs-string">&quot;ProxyServer&quot;</span>)<br><br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;代理状态: <span class="hljs-subst">&#123;<span class="hljs-string">&#x27;启用&#x27;</span> <span class="hljs-keyword">if</span> proxy_enable <span class="hljs-keyword">else</span> <span class="hljs-string">&#x27;禁用&#x27;</span>&#125;</span>&quot;</span>)<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;代理服务器: <span class="hljs-subst">&#123;proxy_server <span class="hljs-keyword">if</span> proxy_server <span class="hljs-keyword">else</span> <span class="hljs-string">&#x27;无&#x27;</span>&#125;</span>&quot;</span>)<br><br>    <span class="hljs-keyword">except</span> Exception <span class="hljs-keyword">as</span> e:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;读取代理设置时出错: <span class="hljs-subst">&#123;e&#125;</span>&quot;</span>)<br><br></code></pre></td></tr></table></figure>
+<h2 id="脚本">脚本</h2>
+<p>编写脚本，使用 <code>mitmdump</code>
+执行，进行拦截、修改请求或响应</p>
+<ol type="1">
+<li><p>创建脚本 <code>modify.py</code>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> mitmproxy <span class="hljs-keyword">import</span> http<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">request</span>(<span class="hljs-params">flow: http.HTTPFlow</span>):<br>    <span class="hljs-keyword">if</span> <span class="hljs-string">&quot;api.example.com&quot;</span> <span class="hljs-keyword">in</span> flow.request.pretty_url:<br>        flow.request.headers[<span class="hljs-string">&quot;X-Debug&quot;</span>] = <span class="hljs-string">&quot;true&quot;</span><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">response</span>(<span class="hljs-params">flow: http.HTTPFlow</span>):<br>    <span class="hljs-keyword">if</span> flow.response.content:<br>        flow.response.text = flow.response.text.replace(<span class="hljs-string">&quot;original&quot;</span>, <span class="hljs-string">&quot;modified&quot;</span>)<br><br></code></pre></td></tr></table></figure></li>
+<li><p>启动 <code>mitmdump</code> 加载脚本：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">mitmdump -s modify.py<br></code></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="嵌入">嵌入</h2>
+<p>使用<code>mitmdump</code>似乎不是很方便，用着不习惯。更希望把<code>mitmproxy</code>
+当作 Python 库在你自己的 Python 程序中调用，也就是将
+<code>mitmproxy</code> 作为一个嵌入式代理服务（embedded
+proxy）来运行。</p>
+<p>以下是一份demo代码（含自动启用系统代理）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> mitmproxy.tools.dump <span class="hljs-keyword">import</span> DumpMaster<br><span class="hljs-keyword">from</span> mitmproxy.options <span class="hljs-keyword">import</span> Options<br><span class="hljs-keyword">from</span> mitmproxy <span class="hljs-keyword">import</span> http, addonmanager<br><span class="hljs-keyword">import</span> asyncio<br><span class="hljs-keyword">import</span> atexit<br><br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyAddon</span>:<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">request</span>(<span class="hljs-params">self, flow: http.HTTPFlow</span>):<br>        <span class="hljs-keyword">if</span> <span class="hljs-string">&quot;api.example.com&quot;</span> <span class="hljs-keyword">in</span> flow.request.pretty_url:<br>            flow.request.headers[<span class="hljs-string">&quot;X-Debug&quot;</span>] = <span class="hljs-string">&quot;true&quot;</span><br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">response</span>(<span class="hljs-params">self, flow: http.HTTPFlow</span>):<br>        <span class="hljs-keyword">if</span> flow.response.content:<br>            flow.response.text = flow.response.text.replace(<span class="hljs-string">&quot;original&quot;</span>, <span class="hljs-string">&quot;modified&quot;</span>)<br><br><br><span class="hljs-keyword">async</span> <span class="hljs-keyword">def</span> <span class="hljs-title function_">run_proxy</span>():<br>    options = Options(listen_host=<span class="hljs-string">&quot;127.0.0.1&quot;</span>, listen_port=<span class="hljs-number">8080</span>)<br>    dump_master = DumpMaster(options, with_termlog=<span class="hljs-literal">False</span>, with_dumper=<span class="hljs-literal">False</span>)<br>    dump_master.addons.add(MyAddon())<br><br>    set_system_proxy(<span class="hljs-string">&#x27;127.0.0.1&#x27;</span>, <span class="hljs-number">8080</span>)<br><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;启动 mitmproxy\n&#x27;</span>)<br>    <span class="hljs-keyword">await</span> dump_master.run()<br>            <br>            <br><span class="hljs-keyword">def</span> <span class="hljs-title function_">on_exit</span>():<br>    set_system_proxy(enable=<span class="hljs-literal">False</span>)<br><br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:<br>    atexit.register(on_exit)<br>    <span class="hljs-keyword">try</span>:<br>        asyncio.run(run_proxy())<br>    <span class="hljs-keyword">except</span> KeyboardInterrupt:<br>        exit()<br><br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BC%96%E7%A8%8B/" class="category-chain-item">编程</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Python/" class="print-no-link">#Python</a>
+      
+        <a href="/tags/%E7%88%AC%E8%99%AB/" class="print-no-link">#爬虫</a>
+      
+        <a href="/tags/%E4%BB%A3%E7%90%86/" class="print-no-link">#代理</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/03/26/%E4%B8%8D%E4%B8%93%E4%B8%9A%EF%BC%8C%E4%BD%86%E4%B8%BB%E8%A7%82%EF%BC%81%E5%87%A0%E7%A7%8D%E5%AE%89%E5%8D%93%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6%E7%9A%84%E4%BD%BF%E7%94%A8%E6%84%9F%E5%8F%97/" title="不专业，但主观！几种安卓开发框架的使用感受">
+                        <span class="hidden-mobile">不专业，但主观！几种安卓开发框架的使用感受</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
